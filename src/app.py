@@ -3,7 +3,8 @@ from src.db_utils import create_db
 
 # main function to run the app
 def run_app():
-    create_db()
+    create_db('data/database/quanti.sqlite')
+
     print("Hi, it's the Quanti app!")
 
     assay_id = ask_assay_name()
