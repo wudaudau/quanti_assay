@@ -4,8 +4,8 @@
   "settings": {
     "width": 2000,
     "height": 2000,
-    "scrollTop": -241,
-    "scrollLeft": -254,
+    "scrollTop": -506,
+    "scrollLeft": 0,
     "zoomLevel": 1,
     "show": 431,
     "database": 32,
@@ -286,7 +286,7 @@
       },
       "p4o3qUJEhWHiv0VAkGQSq": {
         "id": "p4o3qUJEhWHiv0VAkGQSq",
-        "name": "kit_component",
+        "name": "kit_item",
         "comment": "",
         "columnIds": [
           "k2VxgKTHvj9oZnLg1R6yU",
@@ -303,12 +303,12 @@
           "x": 453,
           "y": 882,
           "zIndex": 67,
-          "widthName": 86,
+          "widthName": 60,
           "widthComment": 60,
           "color": ""
         },
         "meta": {
-          "updateAt": 1727268637604,
+          "updateAt": 1727354056047,
           "createAt": 1727256618062
         }
       },
@@ -364,7 +364,7 @@
       },
       "7WAfVIVj9G1lEM8HeLLYI": {
         "id": "7WAfVIVj9G1lEM8HeLLYI",
-        "name": "kits_kit_components",
+        "name": "kits_kit_items",
         "comment": "",
         "columnIds": [
           "jznvdy_O3h1Xx9WmbQsgI",
@@ -382,12 +382,12 @@
           "x": 920,
           "y": 776,
           "zIndex": 87,
-          "widthName": 119,
+          "widthName": 81,
           "widthComment": 60,
           "color": ""
         },
         "meta": {
-          "updateAt": 1727268654030,
+          "updateAt": 1727354072990,
           "createAt": 1727259247320
         }
       },
@@ -1086,20 +1086,20 @@
       "7M82aUTtubcX6MRKDJQvx": {
         "id": "7M82aUTtubcX6MRKDJQvx",
         "tableId": "7WAfVIVj9G1lEM8HeLLYI",
-        "name": "kit_component_id",
+        "name": "kit_item_id",
         "comment": "",
         "dataType": "INTEGER",
         "default": "",
         "options": 8,
         "ui": {
           "keys": 2,
-          "widthName": 104,
+          "widthName": 65,
           "widthComment": 60,
           "widthDataType": 60,
           "widthDefault": 60
         },
         "meta": {
-          "updateAt": 1727268035120,
+          "updateAt": 1727354065108,
           "createAt": 1727268029035
         }
       },
@@ -1859,7 +1859,7 @@
       1727256618062,
       -1,
       {
-        "name": 1727256624820
+        "name": 1727354056046
       }
     ],
     "VpnH6CnZaA_x5p-ViAbNP": [
@@ -1883,7 +1883,7 @@
       1727259247319,
       -1,
       {
-        "name": 1727259260651
+        "name": 1727354072989
       }
     ],
     "cLu4Rbk_7ukYvMZhJCbjq": [
@@ -2208,7 +2208,7 @@
       -1,
       {
         "options(notNull)": 1727268029033,
-        "name": 1727268035119,
+        "name": 1727354065108,
         "dataType": 1727268029033,
         "default": 1727268029033,
         "comment": 1727268029033
