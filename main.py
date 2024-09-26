@@ -1,6 +1,6 @@
 import sys
 from src.app import run_app
-from src.data_insertion import insert_data_from_csv
+from src.data_insertion import insert_assay_data_from_csv
 
 
 
@@ -14,7 +14,7 @@ def main():
     if sys.argv[1] == "run":
         run_app()
     elif sys.argv[1] == "insert":
-        insert_data_from_csv(sys.argv[2])
+        insert_assay_data_from_csv(sys.argv[2])
     else:
         print("Invalid command.")
         print("Please use the following commands:")
