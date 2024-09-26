@@ -10,6 +10,11 @@ import sqlite3
 SCHEMA_PATH = "sql/schema.sql"
 
 def create_db(db_path):
+    """
+    db_path: str - The path to the SQLite database file.
+
+    Create a new SQLite database with the schema defined in the schema.sql file.
+    """
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
 
