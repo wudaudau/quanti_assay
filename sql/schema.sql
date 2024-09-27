@@ -19,9 +19,13 @@ CREATE TABLE kit
   kit_cat_number TEXT    NOT NULL UNIQUE,
   name           TEXT    NULL    ,
   manufacture_id INTEGER NOT NULL,
+  storage_id     INTEGER NOT NULL,
+  description    TEXT    NULL    ,
   PRIMARY KEY (id),
-  FOREIGN KEY (manufacture_id) REFERENCES manufacture (id)
+  FOREIGN KEY (manufacture_id) REFERENCES manufacture (id),
+  FOREIGN KEY (storage_id) REFERENCES storage (id)
 );
+
 
 CREATE TABLE kits_kit_items
 (
