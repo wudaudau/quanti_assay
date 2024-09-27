@@ -12,7 +12,7 @@ class TestDBUtils(unittest.TestCase):
     def setUp(self):
         # Create a temporary file for the SQLite database
         self.db_file = tempfile.NamedTemporaryFile(delete=False) # TODO: make it work. It should be a better way to do this.
-        self.db_path = "data/database/quanti.sqlite"
+        self.db_path = 'data/database/quanti.sqlite' # self.db_file.name
 
     def tearDown(self):
         # Close and remove the temporary file after the test
@@ -28,12 +28,12 @@ class TestDBUtils(unittest.TestCase):
         table_names = cursor.fetchall()
 
         self.assertEqual(len(table_names), 4)
-        self.assertEqual(table_names[0][0], "assay")
+        self.assertEqual(table_names[0][0], "manufacture")
 
-        conn.close()
+        # conn.close()
         
 
     def test_get_table_names(self):
         table_names = get_table_names(self.db_path)
         self.assertEqual(len(table_names), 4)
-        self.assertEqual(table_names[0], "assay")
+        self.assertEqual(table_names[0], "manufacture")
