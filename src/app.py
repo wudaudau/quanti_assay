@@ -1,3 +1,12 @@
+"""
+This may need major refactoring later.
+
+This is only for the initial development phase.
+I am thinking to focus on creating the database and related functions first.
+This work will be done in the db_utils.py file.
+"""
+
+
 
 from src.db_utils import create_db
 
