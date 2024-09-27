@@ -6,14 +6,13 @@ import os
 import tempfile
 
 
-# TODO: Make it work!!!
 
 class TestDBUtils(unittest.TestCase):
     
     def setUp(self):
         # Create a temporary file for the SQLite database
-        self.db_file = tempfile.NamedTemporaryFile(delete=False)
-        self.db_path = self.db_file.name
+        self.db_file = tempfile.NamedTemporaryFile(delete=False) # TODO: make it work. It should be a better way to do this.
+        self.db_path = "data/database/quanti.sqlite"
 
     def tearDown(self):
         # Close and remove the temporary file after the test
