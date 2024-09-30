@@ -203,3 +203,19 @@ def get_or_insert_analyte_mapping(db_path, analyte_name:str, std_analyte_name:st
 
     return analyte_mapping_id
     
+def add_analyte_mapping_from_file(db_path):
+        
+    conn = sqlite3.connect(db_path)
+    cursor = conn.cursor()
+
+    file_path = "data/initial_data_for_the_database/analyte_mapping.csv"
+
+    with open(file_path, "r") as f:
+        reader = csv.DictReader(f, delimiter=";")
+        for row in reader:
+            analyte_name = row["analyte"]
+            std_analyte_name = row["std_analyte"]
+            analyte_mapping_id = get_or_insert_analyte_mapping(db_path, analyte_name, std_analyte_name)
+
+    conn.commit()
+    conn.close()
