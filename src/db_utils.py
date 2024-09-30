@@ -68,8 +68,7 @@ def get_or_insert_manufacture(db_path, manufacture_name):
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
 
-    cursor.execute("SELECT id FROM manufacture WHERE name = ?;", (manufacture_name,))
-    row = cursor.fetchone()
+    row = check_exists(db_path, "manufacture", "name", manufacture_name)
 
     if row:
         manufacture_id = row[0]
@@ -88,9 +87,7 @@ def get_or_insert_storage(db_path, storage_name):
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
 
-
-    cursor.execute("SELECT id FROM storage WHERE name = ?;", (storage_name,))
-    row = cursor.fetchone()
+    row = check_exists(db_path, "storage", "name", storage_name)
 
     if row:
         storage_id = row[0]
