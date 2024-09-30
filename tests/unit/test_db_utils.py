@@ -270,3 +270,20 @@ class TestDBUtils(unittest.TestCase):
 
         assay_type_id = get_or_insert_assay_type(self.db_path, assay_type_name)
         self.assertEqual(assay_type_id, 2)
+
+    def test_get_or_insert_assay(self):
+        create_db(self.db_path)
+
+        assay_name, species, assay_type = ["ELISA B2M", "Human", "ELISA"]
+        assay_id = get_or_insert_assay(self.db_path, assay_name, species, assay_type)
+        self.assertEqual(assay_id, 1)
+
+        assay_id = get_or_insert_assay(self.db_path, assay_name, species, assay_type)
+        self.assertEqual(assay_id, 1)
+
+        assay_name, species, assay_type = ["Dupli-R-PLEX TNF-Rs (TNF-RI and TNF-RII)", "Human", "MSD"]
+        assay_id = get_or_insert_assay(self.db_path, assay_name, species, assay_type)
+        self.assertEqual(assay_id, 2)
+
+        assay_id = get_or_insert_assay(self.db_path, assay_name, species, assay_type)
+        self.assertEqual(assay_id, 2)

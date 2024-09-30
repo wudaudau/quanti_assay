@@ -264,3 +264,24 @@ def get_or_insert_assay_type(db_path, assay_type_name:str):
     conn.close()
 
     return assay_type_id
+
+def get_or_insert_assay(db_path, assay_name:str, species:str, assay_type:str):
+    species_id = get_or_insert_species(db_path, species)
+    assay_type_id = get_or_insert_assay_type(db_path, assay_type)
+
+    conn = sqlite3.connect(db_path)
+    cursor = conn.cursor()
+
+    row = check_exists(db_path, "assay", "name", assay_name)
+
+    if row:
+        assay_id = row[0]
+    else:
+        cursor.execute("INSERT INTO assay (name, species_id, assay_type_id) VALUES (?,?,?);", 
+                    (assay_name, species_id, assay_type_id))
+        assay_id = cursor.lastrowid
+
+    conn.commit()
+    conn.close()
+
+    return assay_id
