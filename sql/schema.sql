@@ -102,6 +102,6 @@ CREATE TABLE assay
   species_id   INTEGER NOT NULL,
   assay_type_id INTEGER NOT NULL,
   PRIMARY KEY (id),
-  FOREIGN KEY (specices_id) REFERENCES specices (id),
+  FOREIGN KEY (species_id) REFERENCES species (id),
   FOREIGN KEY (assay_type_id) REFERENCES assay_type (id)
 );
