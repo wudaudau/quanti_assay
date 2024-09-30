@@ -287,3 +287,20 @@ class TestDBUtils(unittest.TestCase):
 
         assay_id = get_or_insert_assay(self.db_path, assay_name, species, assay_type)
         self.assertEqual(assay_id, 2)
+
+    def test_add_assay_from_file(self):
+        create_db(self.db_path)
+
+        add_assay_from_file(self.db_path)
+
+        conn = sqlite3.connect(self.db_path)
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM assay;")
+        res = cursor.fetchall()
+        conn.close()
+
+        self.assertEqual(len(res), 26)
+        self.assertTupleEqual(res[0], (1, 'Dupli-R-PLEX TNF-Rs (TNF-RI and TNF-RII)', 1, 1))
+        self.assertTupleEqual(res[1], (2, 'R-PLEX BAFF-R', 1, 1))
+        self.assertTupleEqual(res[23], (24, 'ELISA Zonulin', 1, 2))
+        self.assertTupleEqual(res[24], (25, 'V-PLEX Proinfammatory P1 Mouse', 2, 1))

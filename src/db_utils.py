@@ -285,3 +285,23 @@ def get_or_insert_assay(db_path, assay_name:str, species:str, assay_type:str):
     conn.close()
 
     return assay_id
+
+def add_assay_from_file(db_path):
+        
+    conn = sqlite3.connect(db_path)
+    cursor = conn.cursor()
+
+    file_path = "data/initial_data_for_the_database/assay.csv"
+
+    with open(file_path, "r") as f:
+        reader = csv.DictReader(f, delimiter=";")
+        for row in reader:
+            assay_name = row["name"]
+            species = row["species"]
+            assay_type = row["assay_type"]
+            assay_id = get_or_insert_assay(db_path, assay_name, species, assay_type)
+
+    conn.commit()
+    conn.close()
+
+    
