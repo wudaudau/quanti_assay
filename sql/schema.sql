@@ -99,7 +99,7 @@ CREATE TABLE assay
 (
   id            INTEGER NOT NULL,
   name          TEXT    NOT NULL UNIQUE,
-  specices_id   INTEGER NOT NULL,
+  species_id   INTEGER NOT NULL,
   assay_type_id INTEGER NOT NULL,
   PRIMARY KEY (id),
   FOREIGN KEY (specices_id) REFERENCES specices (id),
