@@ -81,7 +81,7 @@ CREATE TABLE analyte_mapping
 
 
 
-CREATE TABLE specices
+CREATE TABLE species
 (
   id   INTEGER NOT NULL,
   name TEXT    NULL    ,
