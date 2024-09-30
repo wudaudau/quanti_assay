@@ -61,6 +61,7 @@ class TestDBUtils(unittest.TestCase):
         self.assertEqual(manufacture_id, 2)
 
     def test_get_or_insert_storage(self):
+        # TODO: the description part is not implemented yet
         create_db(self.db_path)
 
         storage_name = "RT"
