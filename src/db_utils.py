@@ -73,6 +73,9 @@ def check_exists(db_path:str, table_name:str, column_name, value):
 
 
 
+
+
+
 def get_or_insert_manufacture(db_path, manufacture_name):
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
@@ -149,8 +152,18 @@ def add_kit_item_from_file(db_path):
             description = row["description"]
             kit_item_id = get_or_insert_kit_item(db_path, kit_cat_number, name, manufacture, storage, description)
 
-                
-                
+    conn.commit()
+    conn.close()
+
+
+
+
+
+
+
+
+
+
 
     conn.commit()
     conn.close()
