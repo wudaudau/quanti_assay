@@ -155,3 +155,19 @@ class TestDBUtils(unittest.TestCase):
         kit_cat_number, name, manufacture, storage, description = ["R50AA-4", "Diluent 100", "MSD", "RT", "Diluent for MSD kit"]
         kit_item_id = get_or_insert_kit_item(self.db_path, kit_cat_number, name, manufacture, storage, description)
         self.assertEqual(kit_item_id, 1)
+
+    def test_add_kit_item_from_file(self):
+
+        create_db(self.db_path)
+
+        add_kit_item_from_file(self.db_path)
+
+        conn = sqlite3.connect(self.db_path)
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM kit_item;")
+        res = cursor.fetchall()
+        conn.close()
+
+        self.assertEqual(len(res), 3)
+        self.assertTupleEqual(res[0], (1, 'R50AA-4', 'Diluent 100', 1, 1, 'Diluent for MSD kit'))
+        self.assertTupleEqual(res[1], (2, 'R50AA-5', 'Diluent 200', 1, 1, 'Diluent for MSD kit'))

@@ -143,7 +143,10 @@ def add_kit_item_from_file(db_path):
         for line in f:
             line = line.strip()
             if line:
-                cursor.execute("INSERT INTO kit_item (name) VALUES (?);", (line,))
+                # print(line)
+                kit_cat_number, name, manufacture, storage, description = line.split(";")
+                kit_item_id = get_or_insert_kit_item(db_path, kit_cat_number, name, manufacture, storage, description)
+                
 
     conn.commit()
     conn.close()
