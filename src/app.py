@@ -8,7 +8,7 @@ This work will be done in the db_utils.py file.
 
 
 
-from src.db_utils import create_db, add_kit_item_from_file, add_analyte_mapping_from_file
+from src.db_utils import create_db, add_kit_item_from_file, add_analyte_mapping_from_file, add_assay_from_file
 
 # main function to run the app
 def run_app():
@@ -24,6 +24,9 @@ def run_app():
 
     add_analyte_mapping_from_file(db_path)
     print("Analyte mappings have been added to the database.")
+
+    add_assay_from_file(db_path)
+    print("Assays have been added to the database.")
 
 
     assay_id = ask_assay_name()
