@@ -8,7 +8,7 @@ CREATE TABLE manufacture
 CREATE TABLE storage
 (
   id          INTEGER NOT NULL,
-  name        TEXT    NULL    ,
+  name        TEXT    NOT NULL    ,
   description TEXT    NULL    ,
   PRIMARY KEY (id)
 );
