@@ -29,8 +29,15 @@ class TestDBUtils(unittest.TestCase):
         cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
         table_names = cursor.fetchall()
 
-        self.assertEqual(len(table_names), 4)
+        self.assertEqual(len(table_names), 7)
         self.assertEqual(table_names[0][0], "manufacture")
+        self.assertEqual(table_names[1][0], "storage")
+        self.assertEqual(table_names[2][0], "kit_item")
+        self.assertEqual(table_names[3][0], "kits_kit_items")
+        self.assertEqual(table_names[4][0], "analyte")
+        self.assertEqual(table_names[5][0], "std_analyte")
+        self.assertEqual(table_names[6][0], "analyte_std_analyte")
+
 
         conn.close()
         
@@ -39,9 +46,10 @@ class TestDBUtils(unittest.TestCase):
         create_db(self.db_path)
 
         table_names = get_table_names(self.db_path)
-        self.assertEqual(len(table_names), 4)
+        self.assertEqual(len(table_names), 7)
         self.assertEqual(table_names[0], "manufacture")
-        self.assertListEqual(table_names, ["manufacture", "storage", "kit_item", "kits_kit_items"])
+        self.assertListEqual(table_names, ["manufacture", "storage", "kit_item", "kits_kit_items",
+                                           "analyte", "std_analyte", "analyte_std_analyte"])
 
     def test_check_exists(self):
         create_db(self.db_path)
