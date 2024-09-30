@@ -8,11 +8,16 @@ This work will be done in the db_utils.py file.
 
 
 
-from src.db_utils import create_db
+from src.db_utils import create_db, add_kit_item_from_file
 
 # main function to run the app
 def run_app():
-    create_db('data/database/quanti.sqlite')
+    db_path = 'data/database/quanti.sqlite'
+    create_db(db_path)
+    print("Database has been created.")
+
+    add_kit_item_from_file(db_path)
+    print("Kit items have been added to the database.")
 
     print("Hi, it's the Quanti app!")
 
