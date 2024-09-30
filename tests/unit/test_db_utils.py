@@ -59,3 +59,20 @@ class TestDBUtils(unittest.TestCase):
 
         manufacture_id = get_or_insert_manufacture(self.db_path, manufacture_name)
         self.assertEqual(manufacture_id, 2)
+
+    def test_get_or_insert_storage(self):
+        create_db(self.db_path)
+
+        storage_name = "RT"
+        storage_id = get_or_insert_storage(self.db_path, storage_name)
+        self.assertEqual(storage_id, 1)
+
+        storage_id = get_or_insert_storage(self.db_path, storage_name)
+        self.assertEqual(storage_id, 1)
+
+        storage_name = "2-8ºC"
+        storage_id = get_or_insert_storage(self.db_path, storage_name)
+        self.assertEqual(storage_id, 2)
+
+        storage_id = get_or_insert_storage(self.db_path, storage_name)
+        self.assertEqual(storage_id, 2)
