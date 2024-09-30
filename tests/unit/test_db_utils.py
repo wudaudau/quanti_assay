@@ -178,3 +178,20 @@ class TestDBUtils(unittest.TestCase):
         self.assertEqual(len(res), 117)
         self.assertTupleEqual(res[0], (1, '-', 'Plate Seals', 1, 1, 'Adhesive seals for sealing plates during incubations.'))
         self.assertTupleEqual(res[1], (2, 'C0047-2', 'Chemokine Panel 1 (human) Calibrator Blend', 1, 2, 'Ten recombinant human proteins in diluent, buffered and lyophilized. Individual analyte concentration is provided in the lot-specific certificate of analysis (COA).'))
+
+    def test_get_or_insert_analyte(self):
+        create_db(self.db_path)
+
+        analyte_name = "IL-6"
+        analyte_id = get_or_insert_analyte(self.db_path, analyte_name)
+        self.assertEqual(analyte_id, 1)
+
+        analyte_id = get_or_insert_analyte(self.db_path, analyte_name)
+        self.assertEqual(analyte_id, 1)
+
+        analyte_name = "TNF-α"
+        analyte_id = get_or_insert_analyte(self.db_path, analyte_name)
+        self.assertEqual(analyte_id, 2)
+
+        analyte_id = get_or_insert_analyte(self.db_path, analyte_name)
+        self.assertEqual(analyte_id, 2)

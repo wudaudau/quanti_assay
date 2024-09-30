@@ -165,5 +165,24 @@ def add_kit_item_from_file(db_path):
 
 
 
+def get_or_insert_analyte(db_path, analyte_name:str):
+
+    conn = sqlite3.connect(db_path)
+    cursor = conn.cursor()
+
+    row = check_exists(db_path, "analyte", "name", analyte_name)
+
+    if row:
+        analyte_id = row[0]
+    else:
+        cursor.execute("INSERT INTO analyte (name) VALUES (?);", (analyte_name,))
+        analyte_id = cursor.lastrowid
+
+    conn.commit()
+    conn.close()
+
+    return analyte_id
+
+
     conn.commit()
     conn.close()
