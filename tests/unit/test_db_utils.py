@@ -195,3 +195,27 @@ class TestDBUtils(unittest.TestCase):
 
         analyte_id = get_or_insert_analyte(self.db_path, analyte_name)
         self.assertEqual(analyte_id, 2)
+
+    def test_get_or_insert_analyte_mapping(self):
+        create_db(self.db_path)
+
+        analyte_name, std_analyte_name = ["TNF-α", "TNF_alpha"]
+        analyte_mapping_id = get_or_insert_analyte_mapping(self.db_path, analyte_name, std_analyte_name)
+        self.assertEqual(analyte_mapping_id, 1)
+
+        analyte_mapping_id = get_or_insert_analyte_mapping(self.db_path, analyte_name, std_analyte_name)
+        self.assertEqual(analyte_mapping_id, 1)
+
+        analyte_name, std_analyte_name = ["TNF-a", "TNF_alpha"]
+        analyte_mapping_id = get_or_insert_analyte_mapping(self.db_path, analyte_name, std_analyte_name)
+        self.assertEqual(analyte_mapping_id, 2)
+
+        analyte_mapping_id = get_or_insert_analyte_mapping(self.db_path, analyte_name, std_analyte_name)
+        self.assertEqual(analyte_mapping_id, 2)
+
+        analyte_name, std_analyte_name = ["TNF-alpha", "TNF_alpha"]
+        analyte_mapping_id = get_or_insert_analyte_mapping(self.db_path, analyte_name, std_analyte_name)
+        self.assertEqual(analyte_mapping_id, 3)
+
+        analyte_mapping_id = get_or_insert_analyte_mapping(self.db_path, analyte_name, std_analyte_name)
+        self.assertEqual(analyte_mapping_id, 3)

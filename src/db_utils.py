@@ -183,6 +183,23 @@ def get_or_insert_analyte(db_path, analyte_name:str):
 
     return analyte_id
 
+def get_or_insert_analyte_mapping(db_path, analyte_name:str, std_analyte_name:str):
+
+    std_analyte_id = get_or_insert_analyte(db_path, std_analyte_name)
+
+    conn = sqlite3.connect(db_path)
+    cursor = conn.cursor()
+
+    row = check_exists(db_path, "analyte_mapping", "name", analyte_name)
+
+    if row:
+        analyte_mapping_id = row[0]
+    else:
+        cursor.execute("INSERT INTO analyte_mapping (name, std_analyte_id) VALUES (?,?);", (analyte_name, std_analyte_id))
+        analyte_mapping_id = cursor.lastrowid
 
     conn.commit()
     conn.close()
+
+    return analyte_mapping_id
+    
