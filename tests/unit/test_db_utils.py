@@ -41,6 +41,7 @@ class TestDBUtils(unittest.TestCase):
         table_names = get_table_names(self.db_path)
         self.assertEqual(len(table_names), 4)
         self.assertEqual(table_names[0], "manufacture")
+        self.assertListEqual(table_names, ["manufacture", "storage", "kit_item", "kits_kit_items"])
 
     def test_get_or_insert_manufacture(self):
         # TODO: the description part is not implemented yet

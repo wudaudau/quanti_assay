@@ -13,7 +13,7 @@ CREATE TABLE storage
   PRIMARY KEY (id)
 );
 
-CREATE TABLE kit
+CREATE TABLE kit_item
 (
   id             INTEGER NOT NULL,
   kit_cat_number TEXT    NOT NULL UNIQUE,
