@@ -247,3 +247,20 @@ def get_or_insert_species(db_path, species_name:str):
     conn.close()
 
     return species_id
+
+def get_or_insert_assay_type(db_path, assay_type_name:str):
+    conn = sqlite3.connect(db_path)
+    cursor = conn.cursor()
+
+    row = check_exists(db_path, "assay_type", "name", assay_type_name)
+
+    if row:
+        assay_type_id = row[0]
+    else:
+        cursor.execute("INSERT INTO assay_type (name) VALUES (?);", (assay_type_name,))
+        assay_type_id = cursor.lastrowid
+
+    conn.commit()
+    conn.close()
+
+    return assay_type_id
