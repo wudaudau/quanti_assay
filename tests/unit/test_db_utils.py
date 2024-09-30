@@ -43,6 +43,28 @@ class TestDBUtils(unittest.TestCase):
         self.assertEqual(table_names[0], "manufacture")
         self.assertListEqual(table_names, ["manufacture", "storage", "kit_item", "kits_kit_items"])
 
+    def test_check_exists(self):
+        create_db(self.db_path)
+
+        manufacture_name = "MSD"
+        
+        # check if the manufacture exists
+        res = check_exists(self.db_path, "manufacture", "name", manufacture_name)
+        self.assertFalse(res)
+
+        conn = sqlite3.connect(self.db_path)
+        cursor = conn.cursor()
+
+        # add a manufacture
+        cursor.execute("INSERT INTO manufacture (name) VALUES (?);", (manufacture_name,))
+        conn.commit()
+
+        # check if the manufacture exists
+        res = check_exists(self.db_path, "manufacture", "name", manufacture_name)
+        self.assertTrue(res)
+        
+
+
     def test_get_or_insert_manufacture(self):
         # TODO: the description part is not implemented yet
         create_db(self.db_path)

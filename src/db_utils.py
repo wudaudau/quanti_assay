@@ -46,6 +46,24 @@ def get_table_names(db_path):
 
     return [name[0] for name in table_names]
 
+
+
+
+
+def check_exists(db_path, table_name, column_name, value):
+    conn = sqlite3.connect(db_path)
+    cursor = conn.cursor()
+
+    cursor.execute(f"SELECT id FROM {table_name} WHERE {column_name} = ?;", (value,))
+    row = cursor.fetchone()
+
+    conn.close()
+
+    return row is not None
+
+
+
+
 def get_or_insert_manufacture(db_path, manufacture_name):
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
