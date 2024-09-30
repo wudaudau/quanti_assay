@@ -3,7 +3,7 @@ This module contains utility functions for interacting with the SQLite database.
 """
 
 import sqlite3
-
+import csv
 
 
 # Path to the schema.sql file
@@ -140,12 +140,16 @@ def add_kit_item_from_file(db_path):
     file_path = "data/initial_data_for_the_database/kit_item.csv"
 
     with open(file_path, "r") as f:
-        for line in f:
-            line = line.strip()
-            if line:
-                # print(line)
-                kit_cat_number, name, manufacture, storage, description = line.split(";")
-                kit_item_id = get_or_insert_kit_item(db_path, kit_cat_number, name, manufacture, storage, description)
+        reader = csv.DictReader(f, delimiter=";")
+        for row in reader:
+            kit_cat_number = row["cat_number"]
+            name = row["name"]
+            manufacture = row["manufacture"]
+            storage = row["storage"]
+            description = row["description"]
+            kit_item_id = get_or_insert_kit_item(db_path, kit_cat_number, name, manufacture, storage, description)
+
+                
                 
 
     conn.commit()

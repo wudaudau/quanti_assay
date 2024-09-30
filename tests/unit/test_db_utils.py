@@ -168,6 +168,6 @@ class TestDBUtils(unittest.TestCase):
         res = cursor.fetchall()
         conn.close()
 
-        self.assertEqual(len(res), 3)
-        self.assertTupleEqual(res[0], (1, 'R50AA-4', 'Diluent 100', 1, 1, 'Diluent for MSD kit'))
-        self.assertTupleEqual(res[1], (2, 'R50AA-5', 'Diluent 200', 1, 1, 'Diluent for MSD kit'))
+        self.assertEqual(len(res), 117)
+        self.assertTupleEqual(res[0], (1, '-', 'Plate Seals', 1, 1, 'Adhesive seals for sealing plates during incubations.'))
+        self.assertTupleEqual(res[1], (2, 'C0047-2', 'Chemokine Panel 1 (human) Calibrator Blend', 1, 2, 'Ten recombinant human proteins in diluent, buffered and lyophilized. Individual analyte concentration is provided in the lot-specific certificate of analysis (COA).'))
