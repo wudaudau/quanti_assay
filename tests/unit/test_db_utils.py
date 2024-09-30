@@ -11,8 +11,10 @@ class TestDBUtils(unittest.TestCase):
     
     def setUp(self):
         # Create a temporary file for the SQLite database
-        self.db_file = tempfile.NamedTemporaryFile(delete=False) # TODO: make it work. It should be a better way to do this.
-        self.db_path = 'data/database/quanti.sqlite' # self.db_file.name
+        self.db_file = tempfile.NamedTemporaryFile(delete=False)
+        self.db_path = self.db_file.name
+        # TODO: Using in-memory database should be a better option
+            # However, it seems that the connection is closes after each function so the database is lost.
 
     def tearDown(self):
         # Close and remove the temporary file after the test
@@ -34,6 +36,8 @@ class TestDBUtils(unittest.TestCase):
         
 
     def test_get_table_names(self):
+        create_db(self.db_path)
+
         table_names = get_table_names(self.db_path)
         self.assertEqual(len(table_names), 4)
         self.assertEqual(table_names[0], "manufacture")
