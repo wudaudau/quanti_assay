@@ -32,7 +32,7 @@ class TestDBUtils(unittest.TestCase):
         self.assertEqual(len(table_names), 4)
         self.assertEqual(table_names[0][0], "manufacture")
 
-        # conn.close()
+        conn.close()
         
 
     def test_get_table_names(self):
@@ -41,3 +41,21 @@ class TestDBUtils(unittest.TestCase):
         table_names = get_table_names(self.db_path)
         self.assertEqual(len(table_names), 4)
         self.assertEqual(table_names[0], "manufacture")
+
+    def test_get_or_insert_manufacture(self):
+        # TODO: the description part is not implemented yet
+        create_db(self.db_path)
+
+        manufacture_name = "MSD"
+        manufacture_id = get_or_insert_manufacture(self.db_path, manufacture_name)
+        self.assertEqual(manufacture_id, 1)
+
+        manufacture_id = get_or_insert_manufacture(self.db_path, manufacture_name)
+        self.assertEqual(manufacture_id, 1)
+
+        manufacture_name = "Biovender"
+        manufacture_id = get_or_insert_manufacture(self.db_path, manufacture_name)
+        self.assertEqual(manufacture_id, 2)
+
+        manufacture_id = get_or_insert_manufacture(self.db_path, manufacture_name)
+        self.assertEqual(manufacture_id, 2)
