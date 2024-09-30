@@ -50,7 +50,13 @@ def get_table_names(db_path):
 
 
 
-def check_exists(db_path, table_name, column_name, value):
+def check_exists(db_path:str, table_name:str, column_name, value):
+    """
+    db_path: str - The path to the SQLite database file.
+    table_name: str - The name of the table.
+    column_name: str - The name of the column.
+    value: str - The value to check for in the column.
+    """
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
 
@@ -59,7 +65,10 @@ def check_exists(db_path, table_name, column_name, value):
 
     conn.close()
 
-    return row is not None
+    if row:
+        return row
+    else:
+        return None
 
 
 

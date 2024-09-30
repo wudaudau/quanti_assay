@@ -53,7 +53,7 @@ class TestDBUtils(unittest.TestCase):
 
         # check if the manufacture exists
         res = check_exists(self.db_path, "manufacture", "name", manufacture_name)
-        self.assertFalse(res)
+        self.assertIsNone(res)
 
         conn = sqlite3.connect(self.db_path)
         cursor = conn.cursor()
@@ -64,7 +64,7 @@ class TestDBUtils(unittest.TestCase):
 
         # check if the manufacture exists
         res = check_exists(self.db_path, "manufacture", "name", manufacture_name)
-        self.assertTrue(res)
+        self.assertTupleEqual(res, (1,))
 
         ######
         # A simple table: storage
@@ -73,7 +73,7 @@ class TestDBUtils(unittest.TestCase):
 
         # check if the storage exists
         res = check_exists(self.db_path, "storage", "name", storage_name)
-        self.assertFalse(res)
+        self.assertIsNone(res)
 
         # add a storage
         cursor.execute("INSERT INTO storage (name) VALUES (?);", (storage_name,))
@@ -81,7 +81,7 @@ class TestDBUtils(unittest.TestCase):
 
         # check if the storage exists
         res = check_exists(self.db_path, "storage", "name", storage_name)
-        self.assertTrue(res)
+        self.assertTupleEqual(res, (1,))
 
         ######
         # A table with a foreign key: kit_item
@@ -90,7 +90,7 @@ class TestDBUtils(unittest.TestCase):
 
         # check if the kit_item exists
         res = check_exists(self.db_path, "kit_item", "kit_cat_number", kit_cat_number)
-        self.assertFalse(res)
+        self.assertIsNone(res)
 
         # add a kit_item
         cursor.execute("INSERT INTO kit_item (kit_cat_number, name, manufacture_id, storage_id) VALUES (?,?,?,?);", 
@@ -99,7 +99,7 @@ class TestDBUtils(unittest.TestCase):
 
         # check if the kit_item exists
         res = check_exists(self.db_path, "kit_item", "kit_cat_number", kit_cat_number)
-        self.assertTrue(res)
+        self.assertTupleEqual(res, (1,))
 
         ######
         # A junction table: kits_kit_items
