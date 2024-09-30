@@ -219,3 +219,31 @@ def add_analyte_mapping_from_file(db_path):
 
     conn.commit()
     conn.close()
+
+
+
+
+
+
+
+
+
+
+
+
+def get_or_insert_species(db_path, species_name:str):
+    conn = sqlite3.connect(db_path)
+    cursor = conn.cursor()
+
+    row = check_exists(db_path, "species", "name", species_name)
+
+    if row:
+        species_id = row[0]
+    else:
+        cursor.execute("INSERT INTO species (name) VALUES (?);", (species_name,))
+        species_id = cursor.lastrowid
+
+    conn.commit()
+    conn.close()
+
+    return species_id

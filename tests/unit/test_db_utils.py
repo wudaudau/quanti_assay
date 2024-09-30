@@ -236,3 +236,20 @@ class TestDBUtils(unittest.TestCase):
         self.assertTupleEqual(res[0], (1, 'ApoE', 1))
         self.assertTupleEqual(res[20], (21, 'IL-17A', 21))
         self.assertTupleEqual(res[21], (22, 'IL-17A Gen. B', 22))
+
+    def test_get_or_insert_species(self):
+        create_db(self.db_path)
+
+        species_name = "Human"
+        species_id = get_or_insert_species(self.db_path, species_name)
+        self.assertEqual(species_id, 1)
+
+        species_id = get_or_insert_species(self.db_path, species_name)
+        self.assertEqual(species_id, 1)
+
+        species_name = "Mouse"
+        species_id = get_or_insert_species(self.db_path, species_name)
+        self.assertEqual(species_id, 2)
+
+        species_id = get_or_insert_species(self.db_path, species_name)
+        self.assertEqual(species_id, 2)
