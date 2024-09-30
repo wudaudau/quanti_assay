@@ -66,3 +66,42 @@ CREATE TABLE analyte_mapping
   FOREIGN KEY (std_analyte_id) REFERENCES analyte (id)
 );
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CREATE TABLE specices
+(
+  id   INTEGER NOT NULL,
+  name TEXT    NULL    ,
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE assay_type
+(
+  id   INTEGER NOT NULL,
+  name TEXT    NULL    ,
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE assay
+(
+  id            INTEGER NOT NULL,
+  name          TEXT    NOT NULL UNIQUE,
+  specices_id   INTEGER NOT NULL,
+  assay_type_id INTEGER NOT NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY (specices_id) REFERENCES specices (id),
+  FOREIGN KEY (assay_type_id) REFERENCES assay_type (id)
+);
