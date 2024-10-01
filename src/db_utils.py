@@ -50,25 +50,36 @@ def get_table_names(db_path):
 
 
 
-def check_exists(db_path:str, table_name:str, column_name, value):
+def check_exists(db_path:str, table_name:str, conditions:dict):
     """
     db_path: str - The path to the SQLite database file.
     table_name: str - The name of the table.
-    column_name: str - The name of the column.
-    value: str - The value to check for in the column.
+    conditions: dict - A dictionary of column names and values to check if the row exists.
     """
+    if not conditions:
+        raise ValueError("Conditions dictionary cannot be empty.")
+    
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
 
-    cursor.execute(f"SELECT id FROM {table_name} WHERE {column_name} = ?;", (value,))
-    row = cursor.fetchone()
+    # Build the WHERE clause based on the dictionary keys (column names)
+    columns = list(conditions.keys())
+    values = list(conditions.values())
+    where_clause = " AND ".join([f"{col} = ?" for col in columns])
 
-    conn.close()
+    # Dynamically create the query with placeholders for values
+    query = f"SELECT id FROM {table_name} WHERE {where_clause};"
 
-    if row:
-        return row
-    else:
-        return None
+    try:
+        cursor.execute(query, values)
+        row = cursor.fetchone()
+    except Exception as e:
+        print(e)
+        row = None
+    finally:
+        conn.close()
+
+    return row if row else None
 
 
 

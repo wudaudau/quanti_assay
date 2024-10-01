@@ -61,7 +61,7 @@ class TestDBUtils(unittest.TestCase):
         manufacture_name = "MSD"
 
         # check if the manufacture exists
-        res = check_exists(self.db_path, "manufacture", "name", manufacture_name)
+        res = check_exists(self.db_path, "manufacture", {"name": manufacture_name})
         self.assertIsNone(res)
 
         conn = sqlite3.connect(self.db_path)
@@ -72,7 +72,7 @@ class TestDBUtils(unittest.TestCase):
         conn.commit()
 
         # check if the manufacture exists
-        res = check_exists(self.db_path, "manufacture", "name", manufacture_name)
+        res = check_exists(self.db_path, "manufacture", {"name": manufacture_name})
         self.assertTupleEqual(res, (1,))
 
         ######
@@ -81,7 +81,7 @@ class TestDBUtils(unittest.TestCase):
         storage_name = "RT"
 
         # check if the storage exists
-        res = check_exists(self.db_path, "storage", "name", storage_name)
+        res = check_exists(self.db_path, "storage", {"name": storage_name})
         self.assertIsNone(res)
 
         # add a storage
@@ -89,7 +89,7 @@ class TestDBUtils(unittest.TestCase):
         conn.commit()
 
         # check if the storage exists
-        res = check_exists(self.db_path, "storage", "name", storage_name)
+        res = check_exists(self.db_path, "storage", {"name": storage_name})
         self.assertTupleEqual(res, (1,))
 
         ######
@@ -98,7 +98,7 @@ class TestDBUtils(unittest.TestCase):
         kit_cat_number = "R50AA-4" # "Diluent 100"
 
         # check if the kit_item exists
-        res = check_exists(self.db_path, "kit_item", "kit_cat_number", kit_cat_number)
+        res = check_exists(self.db_path, "kit_item", {"kit_cat_number": kit_cat_number})
         self.assertIsNone(res)
 
         # add a kit_item
@@ -107,13 +107,23 @@ class TestDBUtils(unittest.TestCase):
         conn.commit()
 
         # check if the kit_item exists
-        res = check_exists(self.db_path, "kit_item", "kit_cat_number", kit_cat_number)
+        res = check_exists(self.db_path, "kit_item", {"kit_cat_number": kit_cat_number})
         self.assertTupleEqual(res, (1,))
 
         ######
-        # A junction table: kits_kit_items
+        # A junction table: assays_analytes
         ######
-        # TODO: add a test for the junction table
+        assay_id, analyte_id, spot, opt_analyte_name = [1, 1, 1, "B2M__ELISA"]
+        res = check_exists(self.db_path, "assays_analytes", {"assay_id": assay_id, "analyte_id": analyte_id, "spot": spot})
+        self.assertIsNone(res)
+
+        cursor.execute("INSERT INTO assays_analytes (assay_id, analyte_id, spot, opt_analyte_name) VALUES (?,?,?,?);", 
+                       (assay_id, analyte_id, spot,opt_analyte_name))
+        conn.commit()
+
+        res = check_exists(self.db_path, "assays_analytes", {"assay_id": assay_id, "analyte_id": analyte_id, "spot": spot})
+        self.assertTupleEqual(res, (1,))
+
 
 
         conn.close()
