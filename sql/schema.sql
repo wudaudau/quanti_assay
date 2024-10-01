@@ -125,7 +125,7 @@ CREATE TABLE assay
 CREATE TABLE assays_analytes
 (
   id               INTEGER NOT NULL,
-  assay_id         TEXT    NOT NULL,  -- UNIQUE(assay_id, analyte_id, spot)
+  assay_id         INTEGER    NOT NULL,  -- UNIQUE(assay_id, analyte_id, spot)
   analyte_id       INTEGER NOT NULL,  -- UNIQUE(assay_id, analyte_id, spot)
   spot             INTEGER NOT NULL,  -- UNIQUE(assay_id, analyte_id, spot)
   opt_analyte_name TEXT    NOT NULL UNIQUE,

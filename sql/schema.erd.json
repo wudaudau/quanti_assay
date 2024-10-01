@@ -1670,7 +1670,7 @@
         "tableId": "layU6n1K2o7u_2pkwm1NT",
         "name": "name",
         "comment": "",
-        "dataType": "TEXT",
+        "dataType": "INTEGER",
         "default": "",
         "options": 12,
         "ui": {
@@ -1681,7 +1681,7 @@
           "widthDefault": 60
         },
         "meta": {
-          "updateAt": 1727711699163,
+          "updateAt": 1727822599041,
           "createAt": 1727711612634
         }
       },
@@ -1690,7 +1690,7 @@
         "tableId": "49AGAnJ5RlxN5ERJS-yMY",
         "name": "assay_id",
         "comment": "UNIQUE(assay_id, analyte_id, spot)",
-        "dataType": "TEXT",
+        "dataType": "INTEGER",
         "default": "",
         "options": 8,
         "ui": {
@@ -1701,7 +1701,7 @@
           "widthDefault": 60
         },
         "meta": {
-          "updateAt": 1727788408376,
+          "updateAt": 1727822599041,
           "createAt": 1727711614492
         }
       },
@@ -3161,7 +3161,7 @@
       {
         "options(primaryKey)": 1727711696291,
         "name": 1727711656012,
-        "dataType": 1727711660038,
+        "dataType": 1727822599040,
         "options(unique)": 1727711699163
       }
     ],
@@ -3172,7 +3172,7 @@
       {
         "options(notNull)": 1727711614489,
         "name": 1727711666043,
-        "dataType": 1727711660038,
+        "dataType": 1727822599040,
         "default": 1727711614489,
         "comment": 1727788408375
       }
