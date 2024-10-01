@@ -356,3 +356,21 @@ def get_or_insert_assays_analytes(db_path, assay_name:str, analyte_name:str, spo
 
     return assays_analytes_id
 
+def add_assays_analytes_from_file(db_path):
+        
+    conn = sqlite3.connect(db_path)
+    cursor = conn.cursor()
+
+    file_path = "data/initial_data_for_the_database/assays_analytes.csv"
+
+    with open(file_path, "r") as f:
+        reader = csv.DictReader(f, delimiter=";")
+        for row in reader:
+            assay_name = row["assay_name"]
+            analyte_name = row["analyte_name"]
+            spot = row["spot"]
+            opt_analyte_name = row["opt_analyte_name"]
+            assays_analytes_id = get_or_insert_assays_analytes(db_path, assay_name, analyte_name, spot, opt_analyte_name)
+
+    conn.commit()
+    conn.close()
