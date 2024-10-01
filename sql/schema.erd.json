@@ -4,8 +4,8 @@
   "settings": {
     "width": 2000,
     "height": 2000,
-    "scrollTop": -604.8413,
-    "scrollLeft": 0,
+    "scrollTop": -765,
+    "scrollLeft": -342,
     "zoomLevel": 1,
     "show": 495,
     "database": 32,
@@ -90,21 +90,23 @@
           "zIndex": 2,
           "widthName": 60,
           "widthComment": 60,
-          "color": ""
+          "color": "#00BCD4"
         },
         "meta": {
-          "updateAt": 1727734150521,
+          "updateAt": 1727778121391,
           "createAt": 1727255978818
         }
       },
       "49AGAnJ5RlxN5ERJS-yMY": {
         "id": "49AGAnJ5RlxN5ERJS-yMY",
         "name": "assays_analytes",
-        "comment": "It's assay level analyte. e.g. IL-8 and IL-8(HA) are different IL-8",
+        "comment": "This should be the base of analyte. We distingrish between IL-8 and IL-8(HA) here.",
         "columnIds": [
           "3piLus32pxzZmfm74ngjs",
           "LH6BKNpPBOuIev6sIbqoa",
-          "386Om3OOOKyMUZJXmRq28"
+          "386Om3OOOKyMUZJXmRq28",
+          "JGtl6YqaGZhRaIXVBOWG6",
+          "Hxqo86FR7nIg9pHVxN5vk"
         ],
         "seqColumnIds": [
           "3piLus32pxzZmfm74ngjs",
@@ -114,18 +116,20 @@
           "M0VhR6lzhx5S7c5D1g_Vu",
           "ZH5k-uERKSjm3JkI3Ytqr",
           "LH6BKNpPBOuIev6sIbqoa",
-          "386Om3OOOKyMUZJXmRq28"
+          "386Om3OOOKyMUZJXmRq28",
+          "JGtl6YqaGZhRaIXVBOWG6",
+          "Hxqo86FR7nIg9pHVxN5vk"
         ],
         "ui": {
-          "x": 809,
-          "y": 1073,
+          "x": 706,
+          "y": 1012,
           "zIndex": 6,
           "widthName": 94,
-          "widthComment": 357,
+          "widthComment": 469,
           "color": ""
         },
         "meta": {
-          "updateAt": 1727729916071,
+          "updateAt": 1727790161526,
           "createAt": 1727255990706
         }
       },
@@ -197,10 +201,10 @@
           "zIndex": 18,
           "widthName": 65,
           "widthComment": 60,
-          "color": ""
+          "color": "#00BCD4"
         },
         "meta": {
-          "updateAt": 1727734154193,
+          "updateAt": 1727778115150,
           "createAt": 1727256420752
         }
       },
@@ -464,7 +468,7 @@
       "hfA5Vimzj1ut02Qx-1qDZ": {
         "id": "hfA5Vimzj1ut02Qx-1qDZ",
         "name": "analyte",
-        "comment": "the standard name to unify in the system. We still need to distingrish between IL-8 and IL-8(HA)",
+        "comment": "the standard name to unify in the system. IL-8 and IL-8(HA) are the same.",
         "columnIds": [
           "hEgiJRUtGUzzxBLk4Bvcj",
           "1uyBH-q3vLddXP_adP1xI"
@@ -478,11 +482,11 @@
           "y": 1122,
           "zIndex": 244,
           "widthName": 60,
-          "widthComment": 543,
+          "widthComment": 418,
           "color": "#2196F3"
         },
         "meta": {
-          "updateAt": 1727733990625,
+          "updateAt": 1727788234608,
           "createAt": 1727271772378
         }
       },
@@ -612,10 +616,10 @@
           "zIndex": 526,
           "widthName": 60,
           "widthComment": 60,
-          "color": ""
+          "color": "#00BCD4"
         },
         "meta": {
-          "updateAt": 1727735209091,
+          "updateAt": 1727778109978,
           "createAt": 1727734063695
         }
       }
@@ -1685,19 +1689,19 @@
         "id": "LH6BKNpPBOuIev6sIbqoa",
         "tableId": "49AGAnJ5RlxN5ERJS-yMY",
         "name": "assay_id",
-        "comment": "",
+        "comment": "UNIQUE(assay_id, analyte_id, spot)",
         "dataType": "TEXT",
         "default": "",
         "options": 8,
         "ui": {
           "keys": 2,
           "widthName": 60,
-          "widthComment": 60,
+          "widthComment": 203,
           "widthDataType": 60,
           "widthDefault": 60
         },
         "meta": {
-          "updateAt": 1727711666044,
+          "updateAt": 1727788408376,
           "createAt": 1727711614492
         }
       },
@@ -1725,19 +1729,19 @@
         "id": "386Om3OOOKyMUZJXmRq28",
         "tableId": "49AGAnJ5RlxN5ERJS-yMY",
         "name": "analyte_id",
-        "comment": "",
+        "comment": "UNIQUE(assay_id, analyte_id, spot)",
         "dataType": "INTEGER",
         "default": "",
         "options": 8,
         "ui": {
           "keys": 2,
           "widthName": 60,
-          "widthComment": 60,
+          "widthComment": 203,
           "widthDataType": 60,
           "widthDefault": 60
         },
         "meta": {
-          "updateAt": 1727729684494,
+          "updateAt": 1727788417068,
           "createAt": 1727729673973
         }
       },
@@ -1920,6 +1924,46 @@
           "updateAt": 1727734195240,
           "createAt": 1727734142408
         }
+      },
+      "JGtl6YqaGZhRaIXVBOWG6": {
+        "id": "JGtl6YqaGZhRaIXVBOWG6",
+        "tableId": "49AGAnJ5RlxN5ERJS-yMY",
+        "name": "spot",
+        "comment": "UNIQUE(assay_id, analyte_id, spot)",
+        "dataType": "INTEGER",
+        "default": "",
+        "options": 8,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 203,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1727788422071,
+          "createAt": 1727788291363
+        }
+      },
+      "Hxqo86FR7nIg9pHVxN5vk": {
+        "id": "Hxqo86FR7nIg9pHVxN5vk",
+        "tableId": "49AGAnJ5RlxN5ERJS-yMY",
+        "name": "opt_analyte_name",
+        "comment": "",
+        "dataType": "TEXT",
+        "default": "",
+        "options": 12,
+        "ui": {
+          "keys": 0,
+          "widthName": 106,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1727788445514,
+          "createAt": 1727788424193
+        }
       }
     },
     "relationshipEntities": {
@@ -2017,8 +2061,8 @@
           "columnIds": [
             "3piLus32pxzZmfm74ngjs"
           ],
-          "x": 1294,
-          "y": 1137,
+          "x": 1303,
+          "y": 1100,
           "direction": 2
         },
         "end": {
@@ -2091,34 +2135,6 @@
           "createAt": 1727268512969
         }
       },
-      "OiEgtH3FshPaN0n3Dx6Gb": {
-        "id": "OiEgtH3FshPaN0n3Dx6Gb",
-        "identification": false,
-        "relationshipType": 16,
-        "startRelationshipType": 2,
-        "start": {
-          "tableId": "hfA5Vimzj1ut02Qx-1qDZ",
-          "columnIds": [
-            "hEgiJRUtGUzzxBLk4Bvcj"
-          ],
-          "x": 668,
-          "y": 1086,
-          "direction": 2
-        },
-        "end": {
-          "tableId": "49AGAnJ5RlxN5ERJS-yMY",
-          "columnIds": [
-            "ZH5k-uERKSjm3JkI3Ytqr"
-          ],
-          "x": 809,
-          "y": 1187,
-          "direction": 1
-        },
-        "meta": {
-          "updateAt": 1727272477003,
-          "createAt": 1727272477003
-        }
-      },
       "QC1JP4nfDSzWU64mtfSf5": {
         "id": "QC1JP4nfDSzWU64mtfSf5",
         "identification": false,
@@ -2145,62 +2161,6 @@
         "meta": {
           "updateAt": 1727728269111,
           "createAt": 1727273804770
-        }
-      },
-      "NVODwChGl59iogfMjYqf3": {
-        "id": "NVODwChGl59iogfMjYqf3",
-        "identification": false,
-        "relationshipType": 16,
-        "startRelationshipType": 2,
-        "start": {
-          "tableId": "hfA5Vimzj1ut02Qx-1qDZ",
-          "columnIds": [
-            "hEgiJRUtGUzzxBLk4Bvcj"
-          ],
-          "x": 634,
-          "y": 1210,
-          "direction": 2
-        },
-        "end": {
-          "tableId": "3K-0Upnx2j4xI1ywEBeo_",
-          "columnIds": [
-            "5vNXppTNRCcWaFXuw7ctM"
-          ],
-          "x": 750,
-          "y": 1101,
-          "direction": 8
-        },
-        "meta": {
-          "updateAt": 1727273817219,
-          "createAt": 1727273817219
-        }
-      },
-      "MbVcsvPoj3Ke1wm9ITsHJ": {
-        "id": "MbVcsvPoj3Ke1wm9ITsHJ",
-        "identification": false,
-        "relationshipType": 16,
-        "startRelationshipType": 2,
-        "start": {
-          "tableId": "MYd98lII2G1IbLohfWaTT",
-          "columnIds": [
-            "4UWEk0xH0nhGSlYNTF1o2"
-          ],
-          "x": 420,
-          "y": 976,
-          "direction": 2
-        },
-        "end": {
-          "tableId": "p4o3qUJEhWHiv0VAkGQSq",
-          "columnIds": [
-            "LBXYuwIaAgHk0gsYYyLGH"
-          ],
-          "x": 453,
-          "y": 996,
-          "direction": 1
-        },
-        "meta": {
-          "updateAt": 1727439943658,
-          "createAt": 1727439943658
         }
       },
       "ES9_oOMXfCutxuHP5OSnP": {
@@ -2250,9 +2210,9 @@
           "columnIds": [
             "LH6BKNpPBOuIev6sIbqoa"
           ],
-          "x": 809,
-          "y": 1105,
-          "direction": 1
+          "x": 1004.5,
+          "y": 1012,
+          "direction": 4
         },
         "meta": {
           "updateAt": 1727711614493,
@@ -2269,7 +2229,7 @@
           "columnIds": [
             "hEgiJRUtGUzzxBLk4Bvcj"
           ],
-          "x": 674,
+          "x": 549,
           "y": 1174,
           "direction": 2
         },
@@ -2278,8 +2238,8 @@
           "columnIds": [
             "386Om3OOOKyMUZJXmRq28"
           ],
-          "x": 809,
-          "y": 1169,
+          "x": 706,
+          "y": 1100,
           "direction": 1
         },
         "meta": {
@@ -2297,7 +2257,7 @@
           "columnIds": [
             "hEgiJRUtGUzzxBLk4Bvcj"
           ],
-          "x": 355.5,
+          "x": 293,
           "y": 1122,
           "direction": 4
         },
@@ -2382,7 +2342,8 @@
       1727255978816,
       -1,
       {
-        "name": 1727255985881
+        "name": 1727255985881,
+        "ui.color": 1727778121391
       }
     ],
     "49AGAnJ5RlxN5ERJS-yMY": [
@@ -2391,7 +2352,7 @@
       -1,
       {
         "name": 1727729916070,
-        "comment": 1727272001325
+        "comment": 1727788253627
       }
     ],
     "T3gCFYaioQNr1N9GU0mTP": [
@@ -2415,7 +2376,8 @@
       1727256420752,
       -1,
       {
-        "name": 1727256427747
+        "name": 1727256427747,
+        "ui.color": 1727778115149
       }
     ],
     "y454Lo2EyTLucpY9gQpkO": [
@@ -3003,7 +2965,7 @@
       -1,
       {
         "name": 1727729565351,
-        "comment": 1727272038681,
+        "comment": 1727788234607,
         "ui.color": 1727733990624
       }
     ],
@@ -3058,12 +3020,6 @@
         "comment": 1727272477000
       }
     ],
-    "OiEgtH3FshPaN0n3Dx6Gb": [
-      "relationshipEntities",
-      1727272477000,
-      1727729653449,
-      {}
-    ],
     "3K-0Upnx2j4xI1ywEBeo_": [
       "tableEntities",
       1727728642345,
@@ -3113,12 +3069,6 @@
         "default": 1727273817217,
         "comment": 1727273817217
       }
-    ],
-    "NVODwChGl59iogfMjYqf3": [
-      "relationshipEntities",
-      1727728642345,
-      1727729579723,
-      {}
     ],
     "MYd98lII2G1IbLohfWaTT": [
       "tableEntities",
@@ -3177,12 +3127,6 @@
         "comment": 1727439943655
       }
     ],
-    "MbVcsvPoj3Ke1wm9ITsHJ": [
-      "relationshipEntities",
-      1727439943655,
-      1727439959878,
-      {}
-    ],
     "q4oTC9sXt4nkYU8jnARX9": [
       "tableColumnEntities",
       1727439977203,
@@ -3230,7 +3174,7 @@
         "name": 1727711666043,
         "dataType": 1727711660038,
         "default": 1727711614489,
-        "comment": 1727711614489
+        "comment": 1727788408375
       }
     ],
     "PH4Eks9uyJU5ltFYA555r": [
@@ -3258,7 +3202,7 @@
         "name": 1727729684493,
         "dataType": 1727729673971,
         "default": 1727729673971,
-        "comment": 1727729673971
+        "comment": 1727788417067
       }
     ],
     "_ANjND1itMQrOMVRDcNW2": [
@@ -3328,7 +3272,8 @@
       1727734063694,
       -1,
       {
-        "name": 1727735209090
+        "name": 1727735209090,
+        "ui.color": 1727778109977
       }
     ],
     "RSt4x3JmZrbePwwZ9ShFy": [
@@ -3394,6 +3339,28 @@
       1727734142406,
       -1,
       {}
+    ],
+    "JGtl6YqaGZhRaIXVBOWG6": [
+      "tableColumnEntities",
+      1727788291361,
+      -1,
+      {
+        "name": 1727788304075,
+        "dataType": 1727788307133,
+        "comment": 1727788418604,
+        "options(notNull)": 1727788422071
+      }
+    ],
+    "Hxqo86FR7nIg9pHVxN5vk": [
+      "tableColumnEntities",
+      1727788424192,
+      -1,
+      {
+        "name": 1727788436477,
+        "dataType": 1727788440722,
+        "options(notNull)": 1727788442152,
+        "options(unique)": 1727788445514
+      }
     ]
   }
 }
