@@ -105,3 +105,32 @@ CREATE TABLE assay
   FOREIGN KEY (species_id) REFERENCES species (id),
   FOREIGN KEY (assay_type_id) REFERENCES assay_type (id)
 );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- This should be the base of analyte. We distingrish between IL-8 and IL-8(HA) here.
+CREATE TABLE assays_analytes
+(
+  id               INTEGER NOT NULL,
+  assay_id         TEXT    NOT NULL,  -- UNIQUE(assay_id, analyte_id, spot)
+  analyte_id       INTEGER NOT NULL,  -- UNIQUE(assay_id, analyte_id, spot)
+  spot             INTEGER NOT NULL,  -- UNIQUE(assay_id, analyte_id, spot)
+  opt_analyte_name TEXT    NOT NULL UNIQUE,
+  PRIMARY KEY (id),
+  FOREIGN KEY (assay_id) REFERENCES assay (name),
+  FOREIGN KEY (analyte_id) REFERENCES analyte (id), 
+  UNIQUE(assay_id, analyte_id, spot)
+);
