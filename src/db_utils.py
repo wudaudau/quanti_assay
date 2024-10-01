@@ -91,7 +91,7 @@ def get_or_insert_manufacture(db_path, manufacture_name):
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
 
-    row = check_exists(db_path, "manufacture", "name", manufacture_name)
+    row = check_exists(db_path, "manufacture", {"name": manufacture_name})
 
     if row:
         manufacture_id = row[0]
@@ -110,7 +110,7 @@ def get_or_insert_storage(db_path, storage_name):
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
 
-    row = check_exists(db_path, "storage", "name", storage_name)
+    row = check_exists(db_path, "storage", {"name": storage_name})
 
     if row:
         storage_id = row[0]
@@ -130,7 +130,7 @@ def get_or_insert_kit_item(db_path, kit_cat_number:str, name:str, manufacture:st
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
 
-    row = check_exists(db_path, "kit_item", "kit_cat_number", kit_cat_number)
+    row = check_exists(db_path, "kit_item", {"kit_cat_number": kit_cat_number})
 
     if row:
         kit_item_id = row[0]
@@ -181,7 +181,7 @@ def get_or_insert_analyte(db_path, analyte_name:str):
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
 
-    row = check_exists(db_path, "analyte", "name", analyte_name)
+    row = check_exists(db_path, "analyte", {"name": analyte_name})
 
     if row:
         analyte_id = row[0]
@@ -201,7 +201,7 @@ def get_or_insert_analyte_mapping(db_path, analyte_name:str, std_analyte_name:st
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
 
-    row = check_exists(db_path, "analyte_mapping", "name", analyte_name)
+    row = check_exists(db_path, "analyte_mapping", {"name": analyte_name})
 
     if row:
         analyte_mapping_id = row[0]
@@ -246,7 +246,7 @@ def get_or_insert_species(db_path, species_name:str):
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
 
-    row = check_exists(db_path, "species", "name", species_name)
+    row = check_exists(db_path, "species", {"name": species_name})
 
     if row:
         species_id = row[0]
@@ -263,7 +263,7 @@ def get_or_insert_assay_type(db_path, assay_type_name:str):
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
 
-    row = check_exists(db_path, "assay_type", "name", assay_type_name)
+    row = check_exists(db_path, "assay_type", {"name": assay_type_name})
 
     if row:
         assay_type_id = row[0]
@@ -283,7 +283,7 @@ def get_or_insert_assay(db_path, assay_name:str, species:str, assay_type:str):
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
 
-    row = check_exists(db_path, "assay", "name", assay_name)
+    row = check_exists(db_path, "assay", {"name": assay_name})
 
     if row:
         assay_id = row[0]
@@ -340,7 +340,9 @@ def get_or_insert_assays_analytes(db_path, assay_name:str, analyte_name:str, spo
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
 
-    row = check_exists(db_path, "assays_analytes", ("assay_id", "analyte_id", "spot"), (assay_id, analyte_id, spot))
+    row = check_exists(db_path, "assays_analytes", {"assay_id": assay_id, 
+                                                    "analyte_id": analyte_id, 
+                                                    "spot": spot})
 
     if row:
         assays_analytes_id = row[0]
