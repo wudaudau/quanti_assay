@@ -8,7 +8,8 @@ This work will be done in the db_utils.py file.
 
 
 
-from src.db_utils import create_db, add_kit_item_from_file, add_analyte_mapping_from_file, add_assay_from_file
+from src.db_utils import (create_db, add_kit_item_from_file, add_analyte_mapping_from_file, add_assay_from_file,
+                          add_assays_analytes_from_file)
 
 # main function to run the app
 def run_app():
@@ -17,16 +18,22 @@ def run_app():
 
     db_path = 'data/database/quanti.sqlite'
     create_db(db_path)
-    print("Database has been created.")
+    print("Database has been created.\n")
+
+
+    print("Adding data to the database...")
 
     add_kit_item_from_file(db_path)
-    print("Kit items have been added to the database.")
+    print("kit_items.csv have been added to the database.")
 
     add_analyte_mapping_from_file(db_path)
-    print("Analyte mappings have been added to the database.")
+    print("analyte_mappings.csv have been added to the database.")
 
     add_assay_from_file(db_path)
-    print("Assays have been added to the database.")
+    print("assay.csv have been added to the database.")
+
+    add_assays_analytes_from_file(db_path)
+    print("assays_analytes.csv have been added to the database.")
 
 
     assay_id = ask_assay_name()
