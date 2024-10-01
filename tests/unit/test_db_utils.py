@@ -305,3 +305,14 @@ class TestDBUtils(unittest.TestCase):
         self.assertTupleEqual(res[1], (2, 'R-PLEX BAFF-R', 1, 1))
         self.assertTupleEqual(res[23], (24, 'ELISA Zonulin', 1, 2))
         self.assertTupleEqual(res[24], (25, 'V-PLEX Proinfammatory P1 Mouse', 2, 1))
+
+    def test_get_or_insert_assays_analytes(self):
+        create_db(self.db_path)
+        # add_assay_from_file(self.db_path)
+
+        assay_name, analyte_name, spot, opt_analyte_name = ["ELISA B2M", "B2M", 1, "B2M__ELISA"]
+        assays_analytes_id = get_or_insert_assays_analytes(self.db_path, assay_name, analyte_name, spot, opt_analyte_name)
+        self.assertEqual(assays_analytes_id, 1)
+
+        assays_analytes_id = get_or_insert_assays_analytes(self.db_path, assay_name, analyte_name, spot, opt_analyte_name)
+        self.assertEqual(assays_analytes_id, 1)
