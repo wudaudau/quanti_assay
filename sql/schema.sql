@@ -134,3 +134,30 @@ CREATE TABLE assays_analytes
   FOREIGN KEY (analyte_id) REFERENCES analyte (id), 
   UNIQUE(assay_id, analyte_id, spot)
 );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CREATE TABLE sd_inital_conc
+(
+  id              INTEGER NOT NULL,
+  analyte_id      INTEGER NOT NULL, -- UNIQUE(analyte_id, kit_item_id)
+  kit_item_id     INTEGER NOT NULL, -- UNIQUE(analyte_id, kit_item_id)
+  conc            NUMERIC NULL    ,
+  unit            TEXT    NULL    ,
+  expiration_date TEXT    NULL    ,
+  PRIMARY KEY (id),
+  FOREIGN KEY (analyte_id) REFERENCES analyte (id),
+  FOREIGN KEY (kit_item_id) REFERENCES kit_item (id)
+  UNIQUE(analyte_id, kit_item_id)
+);
