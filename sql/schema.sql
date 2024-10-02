@@ -146,18 +146,28 @@ CREATE TABLE assays_analytes
 
 
 
-
+-- Mostly are 
+CREATE TABLE item_lot
+(
+  id         INTEGER NOT NULL,
+  item_id    INTEGER NOT NULL,  -- UNIQUE(item_id, lot_number)
+  lot_number TEXT    NOT NULL,  -- UNIQUE(item_id, lot_number)
+  PRIMARY KEY (id),
+  FOREIGN KEY (item_id) REFERENCES kit_item (id),
+  UNIQUE(item_id, lot_number)
+);
 
 CREATE TABLE sd_inital_conc
 (
   id              INTEGER NOT NULL,
-  analyte_id      INTEGER NOT NULL, -- UNIQUE(analyte_id, kit_item_id)
-  kit_item_id     INTEGER NOT NULL, -- UNIQUE(analyte_id, kit_item_id)
+  item_lot_id     INTEGER NOT NULL,  -- UNIQUE(item_lot_id, analyte_id)
+  analyte_id      INTEGER NOT NULL,  -- UNIQUE(item_lot_id, analyte_id)
   conc            NUMERIC NULL    ,
   unit            TEXT    NULL    ,
   expiration_date TEXT    NULL    ,
   PRIMARY KEY (id),
   FOREIGN KEY (analyte_id) REFERENCES analyte (id),
-  FOREIGN KEY (kit_item_id) REFERENCES kit_item (id)
-  UNIQUE(analyte_id, kit_item_id)
+  FOREIGN KEY (item_lot_id) REFERENCES item_lot (id),
+  UNIQUE(item_lot_id, analyte_id)
 );
+
