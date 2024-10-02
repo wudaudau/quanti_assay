@@ -51,7 +51,7 @@ class TestDBUtils(unittest.TestCase):
                                            "analyte", "analyte_mapping",
                                            "species", "assay_type", "assay",
                                            "assays_analytes",
-                                           "item_lot", "sd_inital_conc"])
+                                           "item_lot", "sd_initial_conc"])
 
     def test_check_exists(self):
         create_db(self.db_path)
