@@ -167,6 +167,23 @@ class TestDBUtils(unittest.TestCase):
         storage_id = get_or_insert_storage(self.db_path, storage_name)
         self.assertEqual(storage_id, 2)
 
+    def test_get_or_insert_kit(self):
+        create_db(self.db_path)
+
+        kit_cat_number, kit_name = ["R50AA-4", "V-PLEX"]
+        kit_id = get_or_insert_kit(self.db_path, kit_name)
+        self.assertEqual(kit_id, 1)
+
+        kit_id = get_or_insert_kit(self.db_path, kit_name)
+        self.assertEqual(kit_id, 1)
+
+        kit_name = "V-PLEX"
+        kit_id = get_or_insert_kit(self.db_path, kit_name)
+        self.assertEqual(kit_id, 2)
+
+        kit_id = get_or_insert_kit(self.db_path, kit_name)
+        self.assertEqual(kit_id, 2)
+
     def test_get_or_insert_kit_item(self):
 
         create_db(self.db_path)

@@ -123,8 +123,28 @@ def get_or_insert_storage(db_path, storage_name):
 
     return storage_id
 
-def get_or_insert_kit_item(db_path, kit_cat_number:str, name:str, manufacture:str, storage:str, description:str):
-    manufacture_id = get_or_insert_manufacture(db_path, manufacture)
+def get_or_insert_kit(db_path, kit_cat_number:str, kit_name:str, manufacture_name:str):
+    manufacture_id = get_or_insert_manufacture(db_path, manufacture_name)
+
+    conn = sqlite3.connect(db_path)
+    cursor = conn.cursor()
+
+    row = check_exists(db_path, "kit", {"kit_cat_number": kit_cat_number})
+
+    if row:
+        kit_id = row[0]
+    else:
+        cursor.execute("INSERT INTO kit (kit_cat_number, name, manufacture_id) VALUES (?,?,?);", 
+                    (kit_cat_number, kit_name, manufacture_id))
+        kit_id = cursor.lastrowid
+
+    conn.commit()
+    conn.close()
+
+    return kit_id
+
+def get_or_insert_kit_item(db_path, kit_cat_number:str, item_name:str, manufacture:str, storage:str, description:str):
+    kit_id = get_or_insert_kit(db_path, kit_cat_number, "add from kit_item", manufacture)
     storage_id = get_or_insert_storage(db_path, storage)
 
     conn = sqlite3.connect(db_path)
@@ -135,8 +155,8 @@ def get_or_insert_kit_item(db_path, kit_cat_number:str, name:str, manufacture:st
     if row:
         kit_item_id = row[0]
     else:
-        cursor.execute("INSERT INTO kit_item (kit_cat_number, name, manufacture_id, storage_id, description) VALUES (?,?,?,?,?);", 
-                    (kit_cat_number, name, manufacture_id, storage_id, description))
+        cursor.execute("INSERT INTO kit_item (kit_cat_number, name, kit_id, storage_id, description) VALUES (?,?,?,?,?);", 
+                    (kit_cat_number, item_name, kit_id, storage_id, description))
         kit_item_id = cursor.lastrowid
 
     conn.commit()
