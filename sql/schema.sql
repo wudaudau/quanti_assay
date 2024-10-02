@@ -13,29 +13,32 @@ CREATE TABLE storage
   PRIMARY KEY (id)
 );
 
-CREATE TABLE kit_item
+CREATE TABLE kit
 (
   id             INTEGER NOT NULL,
   kit_cat_number TEXT    NOT NULL UNIQUE,
   name           TEXT    NULL    ,
   manufacture_id INTEGER NOT NULL,
-  storage_id     INTEGER NOT NULL,
-  description    TEXT    NULL    ,
   PRIMARY KEY (id),
-  FOREIGN KEY (manufacture_id) REFERENCES manufacture (id),
-  FOREIGN KEY (storage_id) REFERENCES storage (id)
+  FOREIGN KEY (manufacture_id) REFERENCES manufacture (id)
 );
 
-
-CREATE TABLE kits_kit_items
+CREATE TABLE kit_item
 (
   id          INTEGER NOT NULL,
+  cat_number  TEXT    NULL     UNIQUE,
+  name        TEXT    NOT NULL,
   kit_id      INTEGER NOT NULL,
-  kit_item_id INTEGER NOT NULL,
+  storage_id  INTEGER NOT NULL,
+  description TEXT    NULL    ,
   PRIMARY KEY (id),
-  FOREIGN KEY (kit_id) REFERENCES kit (id),
-  FOREIGN KEY (kit_item_id) REFERENCES kit_item (id)
+  FOREIGN KEY (storage_id) REFERENCES storage (id),
+  FOREIGN KEY (kit_id) REFERENCES kit (id)
 );
+
+
+
+
 
 
 
