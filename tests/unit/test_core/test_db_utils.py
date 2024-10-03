@@ -1,5 +1,5 @@
 # https://code.visualstudio.com/docs/python/testing#_run-tests
-from src.db_utils import * # The code to test
+from src.core.db_utils import * # The code to test
 import unittest # The test framework
 
 import os

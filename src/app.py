@@ -8,7 +8,7 @@ This work will be done in the db_utils.py file.
 
 
 
-from src.db_utils import (create_db, add_kit_item_from_file, add_analyte_mapping_from_file, add_assay_from_file,
+from src.core.db_utils import (create_db, add_kit_item_from_file, add_analyte_mapping_from_file, add_assay_from_file,
                           add_assays_analytes_from_file)
 
 # main function to run the app
