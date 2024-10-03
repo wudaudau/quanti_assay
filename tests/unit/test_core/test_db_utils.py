@@ -30,12 +30,12 @@ class TestDBUtils(unittest.TestCase):
         table_names = cursor.fetchall()
 
         self.assertEqual(len(table_names), 12)
-        self.assertEqual(table_names[0][0], "manufacture")
-        self.assertEqual(table_names[1][0], "storage")
-        self.assertEqual(table_names[2][0], "kit_item")
-        self.assertEqual(table_names[3][0], "kits_kit_items")
-        self.assertEqual(table_names[4][0], "analyte")
-        self.assertEqual(table_names[5][0], "analyte_mapping")
+        self.assertEqual(table_names[0][0], "species")
+        self.assertEqual(table_names[1][0], "manufacture")
+        self.assertEqual(table_names[2][0], "storage")
+        self.assertEqual(table_names[3][0], "kit_item")
+        self.assertEqual(table_names[4][0], "kits_kit_items")
+        self.assertEqual(table_names[5][0], "analyte")
 
 
         conn.close()
@@ -46,10 +46,11 @@ class TestDBUtils(unittest.TestCase):
 
         table_names = get_table_names(self.db_path)
         self.assertEqual(len(table_names), 12)
-        self.assertEqual(table_names[0], "manufacture")
-        self.assertListEqual(table_names, ["manufacture", "storage", "kit_item", "kits_kit_items",
+        self.assertEqual(table_names[0], "species")
+        self.assertListEqual(table_names, ["species", 
+                                           "manufacture", "storage", "kit_item", "kits_kit_items",
                                            "analyte", "analyte_mapping",
-                                           "species", "assay_type", "assay",
+                                           "assay_type", "assay",
                                            "assays_analytes",
                                            "item_lot", "sd_initial_conc"])
 

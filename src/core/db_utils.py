@@ -6,8 +6,9 @@ import sqlite3
 import csv
 
 
-# Path to the schema.sql file
-SCHEMA_PATH = "sql/schema.sql"
+# Path to the schema files
+SCHEMA_PATHS = ["sql/core_schema.sql",
+                "sql/schema.sql"]
 
 def create_db(db_path):
     """
@@ -19,9 +20,10 @@ def create_db(db_path):
     cursor = conn.cursor()
 
     try:
-        with open(SCHEMA_PATH, "r") as f:
-            schema = f.read()
-            cursor.executescript(schema)
+        for schema_path in SCHEMA_PATHS:
+            with open(schema_path, "r") as f:
+                schema = f.read()
+                cursor.executescript(schema)
     except Exception as e:
         print(e)
     finally:
