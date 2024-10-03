@@ -343,3 +343,13 @@ class TestDBUtils(unittest.TestCase):
         self.assertTupleEqual(res[0], (1, 11, 1, 1, 'GM_CSF__CytoP1'))
         self.assertTupleEqual(res[20], (21, 8, 21, 1, 'IP_10__MetaG1'))
         self.assertTupleEqual(res[21], (22, 8, 22, 3, 'IL_1RA__MetaG1'))
+
+    def test_get_or_insert_item_lot(self):
+        create_db(self.db_path)
+
+        kit_cat_number, lot_number, expiry_date = ["C0049-2", "A0080225", "2024-08-31"]
+        item_lot_id = get_or_insert_item_lot(self.db_path, kit_cat_number, lot_number, expiry_date)
+        self.assertEqual(item_lot_id, 1)
+
+        item_lot_id = get_or_insert_item_lot(self.db_path, kit_cat_number, lot_number, expiry_date)
+        self.assertEqual(item_lot_id, 1)
