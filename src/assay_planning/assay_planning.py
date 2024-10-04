@@ -33,6 +33,24 @@ def get_or_insert_project(db_path, project_name:str, species:str, description:st
 
     return project_id
 
+def add_project_from_file(db_path): 
+            
+    conn = sqlite3.connect(db_path)
+    cursor = conn.cursor()
+
+    file_path = "data/initial_data_for_the_database/project.csv"
+
+    with open(file_path, "r") as f:
+        reader = csv.DictReader(f, delimiter=";")
+        for row in reader:
+            project_name = row["project"]
+            species = row["species"]
+            description = row["description"]
+            project_id = get_or_insert_project(db_path, project_name, species, description)
+
+    conn.commit()
+    conn.close()
+
 
 def get_or_insert_assay_type(db_path, assay_type_name:str):
     conn = sqlite3.connect(db_path)
@@ -114,3 +132,19 @@ def get_or_insert_project_assay(db_path, project_name:str, assay_name:str):
 
 
 # TODO: add_project_assay_from_file()
+def add_project_assay_from_file(db_path):
+        
+    conn = sqlite3.connect(db_path)
+    cursor = conn.cursor()
+
+    file_path = "data/initial_data_for_the_database/project_assay.csv"
+
+    with open(file_path, "r") as f:
+        reader = csv.DictReader(f, delimiter=";")
+        for row in reader:
+            project_name = row["project"]
+            assay_name = row["assay"]
+            project_assay_id = get_or_insert_project_assay(db_path, project_name, assay_name)
+
+    conn.commit()
+    conn.close()

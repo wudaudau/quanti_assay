@@ -31,6 +31,21 @@ class TestAssayPlanning(unittest.TestCase):
         project_id = get_or_insert_project(self.db_path, project_name, species, description)
         self.assertEqual(project_id, 1)
 
+    def test_add_project_from_file(self):
+        create_db(self.db_path)
+
+        add_project_from_file(self.db_path)
+
+        conn = sqlite3.connect(self.db_path)
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM project;")
+        res = cursor.fetchall()
+        conn.close()
+
+        self.assertEqual(len(res), 13)
+        self.assertTupleEqual(res[0], (1, 'CE-PSY (IF)', 1, 'FACE-SZ'))
+        self.assertTupleEqual(res[1], (2, 'BIOFACE-PSY', 1, 'FACE-BD and FACE-DR'))
+        self.assertTupleEqual(res[6], (7, 'CANDY_MOUSE', 2, '')) # TODO: '' or None?
 
     def test_get_or_insert_assay_type(self):
         create_db(self.db_path)
