@@ -81,40 +81,6 @@ CREATE TABLE analyte_mapping
 
 
 
-
-CREATE TABLE assay_type
-(
-  id   INTEGER NOT NULL,
-  name TEXT    NULL    ,
-  PRIMARY KEY (id)
-);
-
-CREATE TABLE assay
-(
-  id            INTEGER NOT NULL,
-  name          TEXT    NOT NULL UNIQUE,
-  species_id   INTEGER NOT NULL,
-  assay_type_id INTEGER NOT NULL,
-  PRIMARY KEY (id),
-  FOREIGN KEY (species_id) REFERENCES species (id),
-  FOREIGN KEY (assay_type_id) REFERENCES assay_type (id)
-);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 -- This should be the base of analyte. We distingrish between IL-8 and IL-8(HA) here.
 CREATE TABLE assays_analytes
 (
