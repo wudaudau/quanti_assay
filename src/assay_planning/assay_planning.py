@@ -135,6 +135,11 @@ def get_or_insert_project_assay(db_path, project_name:str, assay_name:str):
 
 # TODO: add_project_assay_from_file()
 def add_project_assay_from_file(db_path):
+    """
+    The file contains 4 columns: project, species, assay_name, assay_type
+    Therefore, if no existing species or assay_type data is available, the function will insert them into the database.
+    TODO: If there is existing data, what to do if the species or assay_type is different?
+    """
         
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
@@ -144,13 +149,13 @@ def add_project_assay_from_file(db_path):
     with open(file_path, "r") as f:
         reader = csv.DictReader(f, delimiter=";")
         for row in reader:
-            project_name = row["project"]
+            project_name = row["project_name"]
             species = row["species"]
             assay_name = row["assay_name"]
             assay_type = row["assay_type"]
 
-            project_id = get_or_insert_project(db_path, project_name, species, None)
-            assay_id = get_or_insert_assay(db_path, assay_name, species, assay_type)
+            # project_id = get_or_insert_project(db_path, project_name, species, None) # TODO: Do we need it?
+            # assay_id = get_or_insert_assay(db_path, assay_name, species, assay_type) # TODO: Do we need it?
             project_assay_id = get_or_insert_project_assay(db_path, project_name, assay_name)
 
     conn.commit()
