@@ -11,28 +11,13 @@ CREATE TABLE project
 );
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 CREATE TABLE assay_type
 (
   id   INTEGER NOT NULL,
   name TEXT    NULL    ,
   PRIMARY KEY (id)
 );
+
 
 CREATE TABLE assay
 (
@@ -44,16 +29,6 @@ CREATE TABLE assay
   FOREIGN KEY (species_id) REFERENCES species (id),
   FOREIGN KEY (assay_type_id) REFERENCES assay_type (id)
 );
-
-
-
-
-
-
-
-
-
-
 
 
 -- Junction table to assign assays to projects
