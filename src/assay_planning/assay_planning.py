@@ -90,4 +90,27 @@ def add_assay_from_file(db_path): # TODO: Do we still need this function?
     conn.commit()
     conn.close()
 
-    # TODO: get_or_insert_project_assay()
+
+# TODO: get_or_insert_project_assay()
+def get_or_insert_project_assay(db_path, project_name:str, assay_name:str):
+    project_id = get_or_insert_project(db_path, project_name, None, None) # TODO: Optimise this with a wrapper function or something better
+    assay_id = get_or_insert_assay(db_path, assay_name, None, None) # TODO: Optimise this with a wrapper function or something better
+
+    conn = sqlite3.connect(db_path)
+    cursor = conn.cursor()
+
+    row = check_exists(db_path, "project_assay", {"project_id": project_id, "assay_id": assay_id})
+
+    if row:
+        project_assay_id = row[0]
+    else:
+        cursor.execute("INSERT INTO project_assay (project_id, assay_id) VALUES (?,?);", (project_id, assay_id))
+        project_assay_id = cursor.lastrowid
+
+    conn.commit()
+    conn.close()
+
+    return project_assay_id
+
+
+# TODO: add_project_assay_from_file()

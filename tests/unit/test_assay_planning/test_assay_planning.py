@@ -82,3 +82,13 @@ class TestAssayPlanning(unittest.TestCase):
         self.assertTupleEqual(res[1], (2, 'R-PLEX BAFF-R', 1, 1))
         self.assertTupleEqual(res[23], (24, 'ELISA Zonulin', 1, 2))
         self.assertTupleEqual(res[24], (25, 'V-PLEX Proinfammatory P1 Mouse', 2, 1))
+
+    def test_get_or_insert_project_assay(self):
+        create_db(self.db_path)
+
+        project_name, assay_name = ["CE-PSY (IF)", "Dupli-R-PLEX TNF-Rs (TNF-RI and TNF-RII)"]
+        project_assay_id = get_or_insert_project_assay(self.db_path, project_name, assay_name) 
+        self.assertEqual(project_assay_id, 1)
+
+        project_assay_id = get_or_insert_project_assay(self.db_path, project_name, assay_name) 
+        self.assertEqual(project_assay_id, 1)
