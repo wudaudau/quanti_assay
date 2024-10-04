@@ -107,3 +107,19 @@ class TestAssayPlanning(unittest.TestCase):
 
         project_assay_id = get_or_insert_project_assay(self.db_path, project_name, assay_name) 
         self.assertEqual(project_assay_id, 1)
+
+    def test_add_project_assay_from_file(self):
+        create_db(self.db_path)
+
+        add_project_assay_from_file(self.db_path)
+
+        conn = sqlite3.connect(self.db_path)
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM project_assay;")
+        res = cursor.fetchall()
+        conn.close()
+
+        self.assertEqual(len(res), 35) # TODO: not 36???
+        self.assertTupleEqual(res[0], (1, 1, 1))
+        self.assertTupleEqual(res[1], (2, 1, 2))
+        self.assertTupleEqual(res[6], (7, 1, 7))
