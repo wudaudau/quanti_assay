@@ -1,5 +1,12 @@
 # TODO
 
+## About the modules hierachy
+- Core
+  - assay_planning
+  - kit_order
+  - assay_log
+
+
 ## Project progress
 - [ ] feature/shema-and-function-transformation
   - 
