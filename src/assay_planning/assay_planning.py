@@ -143,7 +143,12 @@ def add_project_assay_from_file(db_path):
         reader = csv.DictReader(f, delimiter=";")
         for row in reader:
             project_name = row["project"]
-            assay_name = row["assay"]
+            species = row["species"]
+            assay_name = row["assay_name"]
+            assay_type = row["assay_type"]
+
+            project_id = get_or_insert_project(db_path, project_name, species, None)
+            assay_id = get_or_insert_assay(db_path, assay_name, species, assay_type)
             project_assay_id = get_or_insert_project_assay(db_path, project_name, assay_name)
 
     conn.commit()
