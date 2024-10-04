@@ -29,13 +29,13 @@ class TestDBUtils(unittest.TestCase):
         cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
         table_names = cursor.fetchall()
 
-        self.assertEqual(len(table_names), 12)
+        self.assertEqual(len(table_names), 13)
         self.assertEqual(table_names[0][0], "species")
-        self.assertEqual(table_names[1][0], "manufacture")
-        self.assertEqual(table_names[2][0], "storage")
-        self.assertEqual(table_names[3][0], "kit_item")
-        self.assertEqual(table_names[4][0], "kits_kit_items")
-        self.assertEqual(table_names[5][0], "analyte")
+        self.assertEqual(table_names[1][0], "project")
+        self.assertEqual(table_names[2][0], "manufacture")
+        self.assertEqual(table_names[3][0], "storage")
+        self.assertEqual(table_names[4][0], "kit_item")
+        self.assertEqual(table_names[5][0], "kits_kit_items")
 
 
         conn.close()
@@ -45,9 +45,10 @@ class TestDBUtils(unittest.TestCase):
         create_db(self.db_path)
 
         table_names = get_table_names(self.db_path)
-        self.assertEqual(len(table_names), 12)
+        self.assertEqual(len(table_names), 13)
         self.assertEqual(table_names[0], "species")
-        self.assertListEqual(table_names, ["species", 
+        self.assertListEqual(table_names, ["species",
+                                           "project", 
                                            "manufacture", "storage", "kit_item", "kits_kit_items",
                                            "analyte", "analyte_mapping",
                                            "assay_type", "assay",
