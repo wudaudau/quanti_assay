@@ -111,6 +111,8 @@ def add_assay_from_file(db_path): # TODO: Do we still need this function?
 
 # TODO: get_or_insert_project_assay()
 def get_or_insert_project_assay(db_path, project_name:str, assay_name:str):
+    # TODO: I don't know if it is better to use the project_id and assay_id or the project_name and assay_name
+        # The idea to insert into a table is basically to use HUMAN READABLE NAMES
     project_id = get_or_insert_project(db_path, project_name, None, None) # TODO: Optimise this with a wrapper function or something better
     assay_id = get_or_insert_assay(db_path, assay_name, None, None) # TODO: Optimise this with a wrapper function or something better
 
