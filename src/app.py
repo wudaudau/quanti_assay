@@ -13,11 +13,10 @@ from src.core.db_utils import (create_db, add_kit_item_from_file, add_analyte_ma
 from src.assay_planning.assay_planning import add_assay_from_file, add_project_assay_from_file
 
 # main function to run the app
-def run_app():
+def run_app(db_path:str='data/database/quanti.sqlite'):
 
     print("Hi, it's the Quanti app!")
 
-    db_path = 'data/database/quanti.sqlite'
     create_db(db_path)
     print("Database has been created.\n")
 
