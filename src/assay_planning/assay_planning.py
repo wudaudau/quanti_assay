@@ -160,3 +160,72 @@ def add_project_assay_from_file(db_path):
 
     conn.commit()
     conn.close()
+
+
+
+
+
+
+
+
+
+
+
+
+
+def get_or_insert_analyte(db_path, analyte_name:str):
+
+    conn = sqlite3.connect(db_path)
+    cursor = conn.cursor()
+
+    row = check_exists(db_path, "analyte", {"name": analyte_name})
+
+    if row:
+        analyte_id = row[0]
+    else:
+        cursor.execute("INSERT INTO analyte (name) VALUES (?);", (analyte_name,))
+        analyte_id = cursor.lastrowid
+
+    conn.commit()
+    conn.close()
+
+    return analyte_id
+
+def get_or_insert_analyte_mapping(db_path, analyte_name:str, std_analyte_name:str):
+
+    std_analyte_id = get_or_insert_analyte(db_path, std_analyte_name)
+
+    conn = sqlite3.connect(db_path)
+    cursor = conn.cursor()
+
+    row = check_exists(db_path, "analyte_mapping", {"name": analyte_name})
+
+    if row:
+        analyte_mapping_id = row[0]
+    else:
+        cursor.execute("INSERT INTO analyte_mapping (name, std_analyte_id) VALUES (?,?);", (analyte_name, std_analyte_id))
+        analyte_mapping_id = cursor.lastrowid
+
+    conn.commit()
+    conn.close()
+
+    return analyte_mapping_id
+    
+def add_analyte_mapping_from_file(db_path):
+        
+    conn = sqlite3.connect(db_path)
+    cursor = conn.cursor()
+
+    file_path = "data/initial_data_for_the_database/analyte_mapping.csv"
+
+    with open(file_path, "r") as f:
+        reader = csv.DictReader(f, delimiter=";")
+        for row in reader:
+            analyte_name = row["analyte"]
+            std_analyte_name = row["std_analyte"]
+            analyte_mapping_id = get_or_insert_analyte_mapping(db_path, analyte_name, std_analyte_name)
+
+    conn.commit()
+    conn.close()
+
+
