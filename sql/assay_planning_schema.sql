@@ -42,3 +42,35 @@ CREATE TABLE project_assay
   FOREIGN KEY (assay_id) REFERENCES assay (id),
   UNIQUE (project_id, assay_id)
 );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- the standard name to unify in the system. We still need to distingrish between IL-8 and IL-8(HA)
+CREATE TABLE analyte
+(
+  id   INTEGER NOT NULL,
+  name TEXT    NULL     UNIQUE,
+  PRIMARY KEY (id)
+);
+
+-- To obtain the standard name using in the system
+CREATE TABLE analyte_mapping
+(
+  id             INTEGER NOT NULL,
+  name           TEXT    NULL     UNIQUE,
+  std_analyte_id INTEGER NOT NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY (std_analyte_id) REFERENCES analyte (id)
+);
+
