@@ -9,11 +9,20 @@
 
 ## Project progress
 - [ ] feature/shema-and-function-transformation
-  - 
+  - [ ] `core`
+    - [ ] `db_utils.py`
+      - [ ] 
+  - [ ] `assay_planning`
+    - [ ] Look up assays 
+      - [ ] by project
+      - [ ] by assay_type
+    - [ ] 
+  - [ ] `kit_order`
+  - [ ] `assay_log`
 - [ ] 
 
 ## Unstructured TODO
-- [ ] Create `test_app.py`
+- [/] Create `test_app.py`
 - [ ] check unit. e.g. assay, kit, and SD_analyte may have a column of unit. to process the Quanti exp, we need to ensure no inconsistence for the unit.
 - [ ] complete projct-assay (Be aware of the data sensitivity.)
   - [ ] Ensure all the assays are listed for "CE-PSY" project
