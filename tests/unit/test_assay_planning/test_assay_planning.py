@@ -123,3 +123,65 @@ class TestAssayPlanning(unittest.TestCase):
         self.assertTupleEqual(res[0], (1, 1, 1))
         self.assertTupleEqual(res[1], (2, 1, 2))
         self.assertTupleEqual(res[6], (7, 1, 7))
+
+
+
+
+
+    
+    def test_get_or_insert_analyte(self):
+        create_db(self.db_path)
+
+        analyte_name = "IL-6"
+        analyte_id = get_or_insert_analyte(self.db_path, analyte_name)
+        self.assertEqual(analyte_id, 1)
+
+        analyte_id = get_or_insert_analyte(self.db_path, analyte_name)
+        self.assertEqual(analyte_id, 1)
+
+        analyte_name = "TNF-α"
+        analyte_id = get_or_insert_analyte(self.db_path, analyte_name)
+        self.assertEqual(analyte_id, 2)
+
+        analyte_id = get_or_insert_analyte(self.db_path, analyte_name)
+        self.assertEqual(analyte_id, 2)
+
+    def test_get_or_insert_analyte_mapping(self):
+        create_db(self.db_path)
+
+        analyte_name, std_analyte_name = ["TNF-α", "TNF_alpha"]
+        analyte_mapping_id = get_or_insert_analyte_mapping(self.db_path, analyte_name, std_analyte_name)
+        self.assertEqual(analyte_mapping_id, 1)
+
+        analyte_mapping_id = get_or_insert_analyte_mapping(self.db_path, analyte_name, std_analyte_name)
+        self.assertEqual(analyte_mapping_id, 1)
+
+        analyte_name, std_analyte_name = ["TNF-a", "TNF_alpha"]
+        analyte_mapping_id = get_or_insert_analyte_mapping(self.db_path, analyte_name, std_analyte_name)
+        self.assertEqual(analyte_mapping_id, 2)
+
+        analyte_mapping_id = get_or_insert_analyte_mapping(self.db_path, analyte_name, std_analyte_name)
+        self.assertEqual(analyte_mapping_id, 2)
+
+        analyte_name, std_analyte_name = ["TNF-alpha", "TNF_alpha"]
+        analyte_mapping_id = get_or_insert_analyte_mapping(self.db_path, analyte_name, std_analyte_name)
+        self.assertEqual(analyte_mapping_id, 3)
+
+        analyte_mapping_id = get_or_insert_analyte_mapping(self.db_path, analyte_name, std_analyte_name)
+        self.assertEqual(analyte_mapping_id, 3)
+
+    def test_add_analyte_mapping_from_file(self):
+        create_db(self.db_path)
+
+        add_analyte_mapping_from_file(self.db_path)
+
+        conn = sqlite3.connect(self.db_path)
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM analyte_mapping;")
+        res = cursor.fetchall()
+        conn.close()
+
+        self.assertEqual(len(res), 72)
+        self.assertTupleEqual(res[0], (1, 'ApoE', 1))
+        self.assertTupleEqual(res[20], (21, 'IL-17A', 21))
+        self.assertTupleEqual(res[21], (22, 'IL-17A Gen. B', 22))
