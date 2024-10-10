@@ -5,6 +5,10 @@ import unittest # The test framework
 from unittest.mock import patch
 from io import StringIO
 
+import tempfile
+import os
+
+
 class TestApp(unittest.TestCase):
 
     # def setUp(self) -> None:
@@ -66,3 +70,41 @@ class TestApp(unittest.TestCase):
 
     #     # Verify the error message was printed
     #     mock_print.assert_any_call("Database creation failed")
+
+
+
+
+class TestRunAppWithTempDB(unittest.TestCase):
+
+    def setUp(self):
+        # TODO: see if this is consistent with the test in test_assay_planning.py
+            # Not exactly the same. Try to make them consistent later.
+        # Create a temporary directory
+        self.test_dir = tempfile.TemporaryDirectory()
+        self.db_path = os.path.join(self.test_dir.name, 'test_quanti.sqlite')
+
+    def tearDown(self):
+        # Cleanup the temporary directory
+        self.test_dir.cleanup()
+
+    @patch('builtins.input', side_effect=['1'])  # Mock input to simulate user entering values
+    def test_run_app_integration(self, mock_input):
+        # Mock the data loading functions or create test CSV files in the temporary directory
+
+        # Call run_app (modify the code to take the database path as a parameter)
+        run_app(self.db_path)
+
+        # Verify the database was created and contains expected data
+        # For example, check that some tables exist in the database
+        import sqlite3
+        conn = sqlite3.connect(self.db_path)
+        cursor = conn.cursor()
+
+        # Check if a specific table exists
+        cursor.execute("SELECT assay_id FROM project_assay WHERE id=1;")
+        value = cursor.fetchone()
+        self.assertEqual(value, (11,))
+
+        # TODO: Check other tables and data
+
+        conn.close()
