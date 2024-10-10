@@ -55,3 +55,14 @@ class TestApp(unittest.TestCase):
         self.assertIn("assay.csv have been added to the database.", output)
         self.assertIn("assays_analytes.csv have been added to the database.", output)
         self.assertIn("project_assay.csv have been added to the database.", output)
+
+    # TODO: Handle exceptions. No exception is raised in the current implementation.
+    # @patch('src.app.create_db', side_effect=Exception("Database creation failed"))
+    # @patch('builtins.print')
+    # def test_run_app_handles_create_db_exception(self, mock_print, mock_create_db):
+    #     # Run the function and catch the exception
+    #     with self.assertRaises(Exception):
+    #         run_app()
+
+    #     # Verify the error message was printed
+    #     mock_print.assert_any_call("Database creation failed")
