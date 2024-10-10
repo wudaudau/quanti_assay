@@ -32,8 +32,8 @@ class TestDBUtils(unittest.TestCase):
         self.assertEqual(len(table_names), 14)
         self.assertEqual(table_names[0][0], "species")
         self.assertEqual(table_names[1][0], "project")
-        self.assertEqual(table_names[5][0], "manufacture")
-        self.assertEqual(table_names[9][0], "analyte")
+        self.assertEqual(table_names[5][0], "analyte")
+        self.assertEqual(table_names[7][0], "manufacture")
         self.assertEqual(table_names[11][0], "assays_analytes")
         self.assertEqual(table_names[12][0], "item_lot")
 
@@ -49,8 +49,8 @@ class TestDBUtils(unittest.TestCase):
         self.assertEqual(table_names[0], "species")
         self.assertListEqual(table_names, ["species",
                                            "project", "assay_type", "assay", "project_assay",
-                                           "manufacture", "storage", "kit_item", "kits_kit_items",
                                            "analyte", "analyte_mapping",
+                                           "manufacture", "storage", "kit_item", "kits_kit_items",
                                            "assays_analytes",
                                            "item_lot", "sd_initial_conc"])
 
