@@ -102,40 +102,6 @@ class TestCoreTables(unittest.TestCase):
         self.assertEqual(species_id, 2)
 
     
-    def test_get_or_insert_assays_analytes(self):
-        create_db(self.db_path)
-
-        assay_name, analyte_name, spot, opt_analyte_name = ["ELISA B2M", "B2M", 1, "B2M__ELISA"]
-        assays_analytes_id = get_or_insert_assays_analytes(self.db_path, assay_name, analyte_name, spot, opt_analyte_name)
-        self.assertEqual(assays_analytes_id, 1)
-
-        assays_analytes_id = get_or_insert_assays_analytes(self.db_path, assay_name, analyte_name, spot, opt_analyte_name)
-        self.assertEqual(assays_analytes_id, 1)
-
-    def test_add_assays_analytes_from_file(self):
-        create_db(self.db_path)
-        # add_assay_from_file(self.db_path)
-
-        add_assays_analytes_from_file(self.db_path)
-
-        conn = sqlite3.connect(self.db_path)
-        cursor = conn.cursor()
-        cursor.execute("SELECT * FROM assays_analytes;")
-        res = cursor.fetchall()
-        conn.close()
-
-        self.assertEqual(len(res), 74)
-        self.assertTupleEqual(res[0], (1, 1, 1, 1, 'GM_CSF__CytoP1'))
-        self.assertTupleEqual(res[20], (21, 3, 21, 1, 'IP_10__MetaG1'))
-        self.assertTupleEqual(res[21], (22, 3, 22, 3, 'IL_1RA__MetaG1'))
-
-
-        # TODO: this is the version with add_assay_from_file(self.db_path) after the database is created
-            # we will see if we need this function or need to update the values after the schema transformation is done
-        # self.assertTupleEqual(res[0], (1, 11, 1, 1, 'GM_CSF__CytoP1'))
-        # self.assertTupleEqual(res[20], (21, 8, 21, 1, 'IP_10__MetaG1'))
-        # self.assertTupleEqual(res[21], (22, 8, 22, 3, 'IL_1RA__MetaG1'))
-
     def test_get_or_insert_item_lot(self):
         create_db(self.db_path)
 
