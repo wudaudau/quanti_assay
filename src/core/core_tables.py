@@ -6,7 +6,9 @@ import sqlite3
 import csv
 
 from src.core.db_utils import check_exists
-from src.assay_planning.assay_planning import get_or_insert_analyte
+
+# It's a module that contains the core tables of the database.
+# We need to prevent import functions from the submodules to avoid circular imports.
 
 def get_or_insert_manufacture(db_path, manufacture_name):
     conn = sqlite3.connect(db_path)
