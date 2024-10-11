@@ -15,6 +15,7 @@
     - [ ] `core_tables.py`
       - [ ] add manufacture and kit tables
   - [ ] `assay_planning`
+    - [ ] add sample_type to the project_assay table
     - [ ] Look up assays 
       - [ ] by project
       - [ ] by assay_type
