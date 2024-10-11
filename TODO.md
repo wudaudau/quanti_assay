@@ -12,6 +12,8 @@
   - [ ] `core`
     - [ ] `db_utils.py`
       - [ ] 
+    - [ ] `core_tables.py`
+      - [ ] add manufacture and kit tables
   - [ ] `assay_planning`
     - [ ] Look up assays 
       - [ ] by project
