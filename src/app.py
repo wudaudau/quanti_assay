@@ -7,9 +7,9 @@ This work will be done in the db_utils.py file.
 """
 
 
-
-from src.core.db_utils import (create_db, add_kit_item_from_file, add_analyte_mapping_from_file,
-                          add_assays_analytes_from_file)
+from src.core.db_utils import create_db
+from src.core.core_tables import add_kit_item_from_file
+from src.assay_planning.assay_planning import add_analyte_mapping_from_file, add_assays_analytes_from_file
 from src.assay_planning.assay_planning import add_assay_from_file, add_project_assay_from_file
 
 # main function to run the app
