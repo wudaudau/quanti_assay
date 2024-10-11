@@ -8,21 +8,21 @@
 
 
 ## Project progress
-- [ ] feature/shema-and-function-transformation
-  - [ ] `core`
-    - [ ] `db_utils.py`
-      - [ ] 
-    - [ ] `core_tables.py`
+- feature/shema-and-function-transformation
+  - `core`
+    - `db_utils.py`
+      - [ ] ?
+    - `core_tables.py`
       - [ ] add manufacture and kit tables
-  - [ ] `assay_planning`
+  - `assay_planning`
     - [ ] add sample_type to the project_assay table
     - [ ] Look up assays 
       - [ ] by project
       - [ ] by assay_type
     - [ ] 
-  - [ ] `kit_order`
-  - [ ] `assay_log`
-- [ ] 
+  - `kit_order`
+  - `assay_log`
+- 
 
 ## Unstructured TODO
 - [/] Create `test_app.py`
