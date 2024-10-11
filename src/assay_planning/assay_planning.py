@@ -6,7 +6,7 @@ import sqlite3
 import csv
 
 from src.core.db_utils import check_exists
-from src.core.db_utils import get_or_insert_species
+from src.core.core_tables import get_or_insert_species
 
 
 def get_or_insert_project(db_path, project_name:str, species:str, description:str):
