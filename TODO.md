@@ -13,9 +13,11 @@
     - `db_utils.py`
       - [ ] ?
     - `core_tables.py`
+      - [ ] add the sample_type table in core
       - [ ] add manufacture and kit tables
   - `assay_planning`
-    - [ ] add sample_type to the project_assay table
+    - [ ] refactor the project_assay table to add sample_type
+    - [ ] add llod and ulod to the assay table?
     - [ ] Look up assays 
       - [ ] by project
       - [ ] by assay_type
