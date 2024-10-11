@@ -229,3 +229,65 @@ def add_analyte_mapping_from_file(db_path):
     conn.close()
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def get_or_insert_assays_analytes(db_path, assay_name:str, analyte_name:str, spot:int, opt_analyte_name:str):
+    from src.assay_planning.assay_planning import get_or_insert_assay
+    assay_id = get_or_insert_assay(db_path, assay_name, None, None)
+    analyte_id = get_or_insert_analyte(db_path, analyte_name)
+
+    conn = sqlite3.connect(db_path)
+    cursor = conn.cursor()
+
+    row = check_exists(db_path, "assays_analytes", {"assay_id": assay_id, 
+                                                    "analyte_id": analyte_id, 
+                                                    "spot": spot})
+
+    if row:
+        assays_analytes_id = row[0]
+    else:
+        cursor.execute("INSERT INTO assays_analytes (assay_id, analyte_id, spot, opt_analyte_name) VALUES (?,?,?,?);", 
+                    (assay_id, analyte_id, spot, opt_analyte_name))
+        assays_analytes_id = cursor.lastrowid
+
+    conn.commit()
+    conn.close()
+
+    return assays_analytes_id
+
+def add_assays_analytes_from_file(db_path):
+        
+    conn = sqlite3.connect(db_path)
+    cursor = conn.cursor()
+
+    file_path = "data/initial_data_for_the_database/assays_analytes.csv"
+
+    with open(file_path, "r") as f:
+        reader = csv.DictReader(f, delimiter=";")
+        for row in reader:
+            assay_name = row["assay_name"]
+            analyte_name = row["analyte_name"]
+            spot = row["spot"]
+            opt_analyte_name = row["opt_analyte_name"]
+            assays_analytes_id = get_or_insert_assays_analytes(db_path, assay_name, analyte_name, spot, opt_analyte_name)
+
+    conn.commit()
+    conn.close()
+
+
+
+
