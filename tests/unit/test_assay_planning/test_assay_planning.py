@@ -42,7 +42,7 @@ class TestAssayPlanning(unittest.TestCase):
         res = cursor.fetchall()
         conn.close()
 
-        self.assertEqual(len(res), 13)
+        self.assertEqual(len(res), 14)
         self.assertTupleEqual(res[0], (1, 'CE-PSY (IF)', 1, 'FACE-SZ'))
         self.assertTupleEqual(res[1], (2, 'BIOFACE-PSY', 1, 'FACE-BD and FACE-DR'))
         self.assertTupleEqual(res[6], (7, 'CANDY_MOUSE', 2, '')) # TODO: '' or None?
