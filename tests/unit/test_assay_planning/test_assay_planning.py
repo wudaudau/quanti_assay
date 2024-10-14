@@ -98,6 +98,23 @@ class TestAssayPlanning(unittest.TestCase):
         self.assertTupleEqual(res[23], (24, 'ELISA Zonulin', 1, 2))
         self.assertTupleEqual(res[24], (25, 'V-PLEX Proinfammatory P1 Mouse', 2, 1))
 
+    def test_get_or_insert_sample_type(self):
+        create_db(self.db_path)
+
+        sample_type_name = "Serum"
+        sample_type_id = get_or_insert_sample_type(self.db_path, sample_type_name)
+        self.assertEqual(sample_type_id, 1)
+
+        sample_type_id = get_or_insert_sample_type(self.db_path, sample_type_name)
+        self.assertEqual(sample_type_id, 1)
+
+        sample_type_name = "Plasma (EDTA)"
+        sample_type_id = get_or_insert_sample_type(self.db_path, sample_type_name)
+        self.assertEqual(sample_type_id, 2)
+
+        sample_type_id = get_or_insert_sample_type(self.db_path, sample_type_name)
+        self.assertEqual(sample_type_id, 2)
+
     # def test_get_or_insert_project_assay(self):
     #     create_db(self.db_path)
 
