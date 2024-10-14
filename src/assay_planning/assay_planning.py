@@ -125,6 +125,23 @@ def get_or_insert_sample_type(db_path, sample_type_name:str, description:str=Non
 
     return sample_type_id
 
+def add_sample_type_from_file(db_path):
+            
+    conn = sqlite3.connect(db_path)
+    cursor = conn.cursor()
+
+    file_path = "data/initial_data_for_the_database/sample_type.csv"
+
+    with open(file_path, "r") as f:
+        reader = csv.DictReader(f, delimiter=";")
+        for row in reader:
+            sample_type_name = row["name"]
+            description = row["description"]
+            sample_type_id = get_or_insert_sample_type(db_path, sample_type_name, description)
+
+    conn.commit()
+    conn.close()
+
 
 # TODO: get_or_insert_project_assay()
 def get_or_insert_project_assay(db_path, project_name:str, assay_name:str):

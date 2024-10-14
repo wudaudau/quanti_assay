@@ -115,6 +115,22 @@ class TestAssayPlanning(unittest.TestCase):
         sample_type_id = get_or_insert_sample_type(self.db_path, sample_type_name)
         self.assertEqual(sample_type_id, 2)
 
+    def test_add_sample_type_from_file(self):
+        create_db(self.db_path)
+
+        add_sample_type_from_file(self.db_path)
+
+        conn = sqlite3.connect(self.db_path)
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM sample_type;")
+        res = cursor.fetchall()
+        conn.close()
+
+        self.assertEqual(len(res), 6)
+        self.assertTupleEqual(res[0], (1, 'Serum', '')) #TODO: the description should be None or ''?
+        self.assertTupleEqual(res[1], (2, 'Plasma (EDTA)', '')) #TODO: the description should be None or ''?
+        self.assertTupleEqual(res[4], (5, 'EVs from serum', 'Evs extracted using…'))
+
     # def test_get_or_insert_project_assay(self):
     #     create_db(self.db_path)
 
