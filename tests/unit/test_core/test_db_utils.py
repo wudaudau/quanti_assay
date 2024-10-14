@@ -29,13 +29,13 @@ class TestDBUtils(unittest.TestCase):
         cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
         table_names = cursor.fetchall()
 
-        self.assertEqual(len(table_names), 14)
+        self.assertEqual(len(table_names), 15)
         self.assertEqual(table_names[0][0], "species")
         self.assertEqual(table_names[1][0], "manufacture")
         self.assertEqual(table_names[5][0], "item_lot")
         self.assertEqual(table_names[7][0], "project")
-        self.assertEqual(table_names[11][0], "analyte")
-        self.assertEqual(table_names[13][0], "assays_analytes")
+        self.assertEqual(table_names[12][0], "analyte")
+        self.assertEqual(table_names[14][0], "assays_analytes")
 
 
         conn.close()
@@ -45,12 +45,12 @@ class TestDBUtils(unittest.TestCase):
         create_db(self.db_path)
 
         table_names = get_table_names(self.db_path)
-        self.assertEqual(len(table_names), 14)
+        self.assertEqual(len(table_names), 15)
         self.assertEqual(table_names[0], "species")
         self.assertListEqual(table_names, ["species",
                                            "manufacture", "storage", "kit_item", "kits_kit_items",
                                            "item_lot", "sd_initial_conc",
-                                           "project", "assay_type", "assay", "project_assay",
+                                           "project", "assay_type", "assay", "sample_type", "project_assay",
                                            "analyte", "analyte_mapping",
                                            "assays_analytes",
                                            ])
