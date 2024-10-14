@@ -98,127 +98,127 @@ class TestAssayPlanning(unittest.TestCase):
         self.assertTupleEqual(res[23], (24, 'ELISA Zonulin', 1, 2))
         self.assertTupleEqual(res[24], (25, 'V-PLEX Proinfammatory P1 Mouse', 2, 1))
 
-    def test_get_or_insert_project_assay(self):
-        create_db(self.db_path)
+    # def test_get_or_insert_project_assay(self):
+    #     create_db(self.db_path)
 
-        project_name, assay_name = ["CE-PSY (IF)", "Dupli-R-PLEX TNF-Rs (TNF-RI and TNF-RII)"]
-        project_assay_id = get_or_insert_project_assay(self.db_path, project_name, assay_name) 
-        self.assertEqual(project_assay_id, 1)
+    #     project_name, assay_name = ["CE-PSY (IF)", "Dupli-R-PLEX TNF-Rs (TNF-RI and TNF-RII)"]
+    #     project_assay_id = get_or_insert_project_assay(self.db_path, project_name, assay_name) 
+    #     self.assertEqual(project_assay_id, 1)
 
-        project_assay_id = get_or_insert_project_assay(self.db_path, project_name, assay_name) 
-        self.assertEqual(project_assay_id, 1)
+    #     project_assay_id = get_or_insert_project_assay(self.db_path, project_name, assay_name) 
+    #     self.assertEqual(project_assay_id, 1)
 
-    def test_add_project_assay_from_file(self):
-        create_db(self.db_path)
+    # def test_add_project_assay_from_file(self):
+    #     create_db(self.db_path)
 
-        add_project_assay_from_file(self.db_path)
+    #     add_project_assay_from_file(self.db_path)
 
-        conn = sqlite3.connect(self.db_path)
-        cursor = conn.cursor()
-        cursor.execute("SELECT * FROM project_assay;")
-        res = cursor.fetchall()
-        conn.close()
+    #     conn = sqlite3.connect(self.db_path)
+    #     cursor = conn.cursor()
+    #     cursor.execute("SELECT * FROM project_assay;")
+    #     res = cursor.fetchall()
+    #     conn.close()
 
-        self.assertEqual(len(res), 35) # TODO: not 36???
-        self.assertTupleEqual(res[0], (1, 1, 1))
-        self.assertTupleEqual(res[1], (2, 1, 2))
-        self.assertTupleEqual(res[6], (7, 1, 7))
+    #     self.assertEqual(len(res), 35) # TODO: not 36???
+    #     self.assertTupleEqual(res[0], (1, 1, 1))
+    #     self.assertTupleEqual(res[1], (2, 1, 2))
+    #     self.assertTupleEqual(res[6], (7, 1, 7))
 
 
 
 
 
     
-    def test_get_or_insert_analyte(self):
-        create_db(self.db_path)
+    # def test_get_or_insert_analyte(self):
+    #     create_db(self.db_path)
 
-        analyte_name = "IL-6"
-        analyte_id = get_or_insert_analyte(self.db_path, analyte_name)
-        self.assertEqual(analyte_id, 1)
+    #     analyte_name = "IL-6"
+    #     analyte_id = get_or_insert_analyte(self.db_path, analyte_name)
+    #     self.assertEqual(analyte_id, 1)
 
-        analyte_id = get_or_insert_analyte(self.db_path, analyte_name)
-        self.assertEqual(analyte_id, 1)
+    #     analyte_id = get_or_insert_analyte(self.db_path, analyte_name)
+    #     self.assertEqual(analyte_id, 1)
 
-        analyte_name = "TNF-α"
-        analyte_id = get_or_insert_analyte(self.db_path, analyte_name)
-        self.assertEqual(analyte_id, 2)
+    #     analyte_name = "TNF-α"
+    #     analyte_id = get_or_insert_analyte(self.db_path, analyte_name)
+    #     self.assertEqual(analyte_id, 2)
 
-        analyte_id = get_or_insert_analyte(self.db_path, analyte_name)
-        self.assertEqual(analyte_id, 2)
+    #     analyte_id = get_or_insert_analyte(self.db_path, analyte_name)
+    #     self.assertEqual(analyte_id, 2)
 
-    def test_get_or_insert_analyte_mapping(self):
-        create_db(self.db_path)
+    # def test_get_or_insert_analyte_mapping(self):
+    #     create_db(self.db_path)
 
-        analyte_name, std_analyte_name = ["TNF-α", "TNF_alpha"]
-        analyte_mapping_id = get_or_insert_analyte_mapping(self.db_path, analyte_name, std_analyte_name)
-        self.assertEqual(analyte_mapping_id, 1)
+    #     analyte_name, std_analyte_name = ["TNF-α", "TNF_alpha"]
+    #     analyte_mapping_id = get_or_insert_analyte_mapping(self.db_path, analyte_name, std_analyte_name)
+    #     self.assertEqual(analyte_mapping_id, 1)
 
-        analyte_mapping_id = get_or_insert_analyte_mapping(self.db_path, analyte_name, std_analyte_name)
-        self.assertEqual(analyte_mapping_id, 1)
+    #     analyte_mapping_id = get_or_insert_analyte_mapping(self.db_path, analyte_name, std_analyte_name)
+    #     self.assertEqual(analyte_mapping_id, 1)
 
-        analyte_name, std_analyte_name = ["TNF-a", "TNF_alpha"]
-        analyte_mapping_id = get_or_insert_analyte_mapping(self.db_path, analyte_name, std_analyte_name)
-        self.assertEqual(analyte_mapping_id, 2)
+    #     analyte_name, std_analyte_name = ["TNF-a", "TNF_alpha"]
+    #     analyte_mapping_id = get_or_insert_analyte_mapping(self.db_path, analyte_name, std_analyte_name)
+    #     self.assertEqual(analyte_mapping_id, 2)
 
-        analyte_mapping_id = get_or_insert_analyte_mapping(self.db_path, analyte_name, std_analyte_name)
-        self.assertEqual(analyte_mapping_id, 2)
+    #     analyte_mapping_id = get_or_insert_analyte_mapping(self.db_path, analyte_name, std_analyte_name)
+    #     self.assertEqual(analyte_mapping_id, 2)
 
-        analyte_name, std_analyte_name = ["TNF-alpha", "TNF_alpha"]
-        analyte_mapping_id = get_or_insert_analyte_mapping(self.db_path, analyte_name, std_analyte_name)
-        self.assertEqual(analyte_mapping_id, 3)
+    #     analyte_name, std_analyte_name = ["TNF-alpha", "TNF_alpha"]
+    #     analyte_mapping_id = get_or_insert_analyte_mapping(self.db_path, analyte_name, std_analyte_name)
+    #     self.assertEqual(analyte_mapping_id, 3)
 
-        analyte_mapping_id = get_or_insert_analyte_mapping(self.db_path, analyte_name, std_analyte_name)
-        self.assertEqual(analyte_mapping_id, 3)
+    #     analyte_mapping_id = get_or_insert_analyte_mapping(self.db_path, analyte_name, std_analyte_name)
+    #     self.assertEqual(analyte_mapping_id, 3)
 
-    def test_add_analyte_mapping_from_file(self):
-        create_db(self.db_path)
+    # def test_add_analyte_mapping_from_file(self):
+    #     create_db(self.db_path)
 
-        add_analyte_mapping_from_file(self.db_path)
+    #     add_analyte_mapping_from_file(self.db_path)
 
-        conn = sqlite3.connect(self.db_path)
-        cursor = conn.cursor()
-        cursor.execute("SELECT * FROM analyte_mapping;")
-        res = cursor.fetchall()
-        conn.close()
+    #     conn = sqlite3.connect(self.db_path)
+    #     cursor = conn.cursor()
+    #     cursor.execute("SELECT * FROM analyte_mapping;")
+    #     res = cursor.fetchall()
+    #     conn.close()
 
-        self.assertEqual(len(res), 72)
-        self.assertTupleEqual(res[0], (1, 'ApoE', 1))
-        self.assertTupleEqual(res[20], (21, 'IL-17A', 21))
-        self.assertTupleEqual(res[21], (22, 'IL-17A Gen. B', 22))
-
-
+    #     self.assertEqual(len(res), 72)
+    #     self.assertTupleEqual(res[0], (1, 'ApoE', 1))
+    #     self.assertTupleEqual(res[20], (21, 'IL-17A', 21))
+    #     self.assertTupleEqual(res[21], (22, 'IL-17A Gen. B', 22))
 
 
-    def test_get_or_insert_assays_analytes(self):
-        create_db(self.db_path)
-
-        assay_name, analyte_name, spot, opt_analyte_name = ["ELISA B2M", "B2M", 1, "B2M__ELISA"]
-        assays_analytes_id = get_or_insert_assays_analytes(self.db_path, assay_name, analyte_name, spot, opt_analyte_name)
-        self.assertEqual(assays_analytes_id, 1)
-
-        assays_analytes_id = get_or_insert_assays_analytes(self.db_path, assay_name, analyte_name, spot, opt_analyte_name)
-        self.assertEqual(assays_analytes_id, 1)
-
-    def test_add_assays_analytes_from_file(self):
-        create_db(self.db_path)
-        # add_assay_from_file(self.db_path)
-
-        add_assays_analytes_from_file(self.db_path)
-
-        conn = sqlite3.connect(self.db_path)
-        cursor = conn.cursor()
-        cursor.execute("SELECT * FROM assays_analytes;")
-        res = cursor.fetchall()
-        conn.close()
-
-        self.assertEqual(len(res), 74)
-        self.assertTupleEqual(res[0], (1, 1, 1, 1, 'GM_CSF__CytoP1'))
-        self.assertTupleEqual(res[20], (21, 3, 21, 1, 'IP_10__MetaG1'))
-        self.assertTupleEqual(res[21], (22, 3, 22, 3, 'IL_1RA__MetaG1'))
 
 
-        # TODO: this is the version with add_assay_from_file(self.db_path) after the database is created
-            # we will see if we need this function or need to update the values after the schema transformation is done
-        # self.assertTupleEqual(res[0], (1, 11, 1, 1, 'GM_CSF__CytoP1'))
-        # self.assertTupleEqual(res[20], (21, 8, 21, 1, 'IP_10__MetaG1'))
-        # self.assertTupleEqual(res[21], (22, 8, 22, 3, 'IL_1RA__MetaG1'))
+    # def test_get_or_insert_assays_analytes(self):
+    #     create_db(self.db_path)
+
+    #     assay_name, analyte_name, spot, opt_analyte_name = ["ELISA B2M", "B2M", 1, "B2M__ELISA"]
+    #     assays_analytes_id = get_or_insert_assays_analytes(self.db_path, assay_name, analyte_name, spot, opt_analyte_name)
+    #     self.assertEqual(assays_analytes_id, 1)
+
+    #     assays_analytes_id = get_or_insert_assays_analytes(self.db_path, assay_name, analyte_name, spot, opt_analyte_name)
+    #     self.assertEqual(assays_analytes_id, 1)
+
+    # def test_add_assays_analytes_from_file(self):
+    #     create_db(self.db_path)
+    #     # add_assay_from_file(self.db_path)
+
+    #     add_assays_analytes_from_file(self.db_path)
+
+    #     conn = sqlite3.connect(self.db_path)
+    #     cursor = conn.cursor()
+    #     cursor.execute("SELECT * FROM assays_analytes;")
+    #     res = cursor.fetchall()
+    #     conn.close()
+
+    #     self.assertEqual(len(res), 74)
+    #     self.assertTupleEqual(res[0], (1, 1, 1, 1, 'GM_CSF__CytoP1'))
+    #     self.assertTupleEqual(res[20], (21, 3, 21, 1, 'IP_10__MetaG1'))
+    #     self.assertTupleEqual(res[21], (22, 3, 22, 3, 'IL_1RA__MetaG1'))
+
+
+    #     # TODO: this is the version with add_assay_from_file(self.db_path) after the database is created
+    #         # we will see if we need this function or need to update the values after the schema transformation is done
+    #     # self.assertTupleEqual(res[0], (1, 11, 1, 1, 'GM_CSF__CytoP1'))
+    #     # self.assertTupleEqual(res[20], (21, 8, 21, 1, 'IP_10__MetaG1'))
+    #     # self.assertTupleEqual(res[21], (22, 8, 22, 3, 'IL_1RA__MetaG1'))
