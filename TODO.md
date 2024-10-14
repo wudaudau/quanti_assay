@@ -9,6 +9,7 @@
 
 ## Project progress
 - feature/shema-and-function-transformation
+  - At this stage, our objective is to arrange the data and input to the database. While arrange data, we create required schema. Therefore, we don't need UPDATE function for the moment. 
   - `core`
     - `db_utils.py`
       - [ ] ?
