@@ -30,6 +30,14 @@ CREATE TABLE assay
   FOREIGN KEY (assay_type_id) REFERENCES assay_type (id)
 );
 
+CREATE TABLE sample_type
+(
+  id          INTEGER NOT NULL,
+  name        TEXT    NOT NULL UNIQUE,
+  description TEXT    NULL    ,
+  PRIMARY KEY (id)
+);
+
 
 -- Junction table to assign assays to projects
 CREATE TABLE project_assay
