@@ -18,14 +18,6 @@ CREATE TABLE assay_type
   PRIMARY KEY (id)
 );
 
-CREATE TABLE sample_type
-(
-  id          INTEGER NOT NULL,
-  name        TEXT    NOT NULL UNIQUE,
-  description TEXT    NULL    ,
-  PRIMARY KEY (id)
-);
-
 
 CREATE TABLE assay
 (
