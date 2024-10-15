@@ -144,11 +144,12 @@ def add_sample_type_from_file(db_path):
 
 
 # TODO: get_or_insert_project_assay()
-def get_or_insert_project_assay(db_path, project_name:str, assay_name:str):
+def get_or_insert_project_assay(db_path, project_name:str, assay_name:str, sample_type:str):
     # TODO: I don't know if it is better to use the project_id and assay_id or the project_name and assay_name
-        # The idea to insert into a table is basically to use HUMAN READABLE NAMES
+        # The idea to insert into a table is basically to use HUMAN READABLE NAMES, therefore use the names
     project_id = get_or_insert_project(db_path, project_name, None, None) # TODO: Optimise this with a wrapper function or something better
     assay_id = get_or_insert_assay(db_path, assay_name, None, None) # TODO: Optimise this with a wrapper function or something better
+    sample_type_id = get_or_insert_sample_type(db_path, sample_type, None) # TODO: Optimise this with a wrapper function or something better
 
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
@@ -158,7 +159,8 @@ def get_or_insert_project_assay(db_path, project_name:str, assay_name:str):
     if row:
         project_assay_id = row[0]
     else:
-        cursor.execute("INSERT INTO project_assay (project_id, assay_id) VALUES (?,?);", (project_id, assay_id))
+        cursor.execute("INSERT INTO project_assay (project_id, assay_id, sample_type_id) VALUES (?,?,?);", 
+                       (project_id, assay_id, sample_type_id))
         project_assay_id = cursor.lastrowid
 
     conn.commit()

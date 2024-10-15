@@ -131,15 +131,15 @@ class TestAssayPlanning(unittest.TestCase):
         self.assertTupleEqual(res[1], (2, 'Plasma (EDTA)', '')) #TODO: the description should be None or ''?
         self.assertTupleEqual(res[4], (5, 'EVs from serum', 'Evs extracted using…'))
 
-    # def test_get_or_insert_project_assay(self):
-    #     create_db(self.db_path)
+    def test_get_or_insert_project_assay(self):
+        create_db(self.db_path)
 
-    #     project_name, assay_name = ["CE-PSY (IF)", "Dupli-R-PLEX TNF-Rs (TNF-RI and TNF-RII)"]
-    #     project_assay_id = get_or_insert_project_assay(self.db_path, project_name, assay_name) 
-    #     self.assertEqual(project_assay_id, 1)
+        project_name, assay_name, sample_type = ["CE-PSY (IF)", "Dupli-R-PLEX TNF-Rs (TNF-RI and TNF-RII)", "Serum"]
+        project_assay_id = get_or_insert_project_assay(self.db_path, project_name, assay_name, sample_type) 
+        self.assertEqual(project_assay_id, 1)
 
-    #     project_assay_id = get_or_insert_project_assay(self.db_path, project_name, assay_name) 
-    #     self.assertEqual(project_assay_id, 1)
+        project_assay_id = get_or_insert_project_assay(self.db_path, project_name, assay_name, sample_type) 
+        self.assertEqual(project_assay_id, 1)
 
     # def test_add_project_assay_from_file(self):
     #     create_db(self.db_path)
