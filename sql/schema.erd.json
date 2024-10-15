@@ -4,8 +4,8 @@
   "settings": {
     "width": 3000,
     "height": 3000,
-    "scrollTop": -180,
-    "scrollLeft": -153,
+    "scrollTop": -405,
+    "scrollLeft": -560,
     "zoomLevel": 1,
     "show": 495,
     "database": 32,
@@ -191,10 +191,10 @@
           "zIndex": 14,
           "widthName": 74,
           "widthComment": 60,
-          "color": ""
+          "color": "#8BC34A"
         },
         "meta": {
-          "updateAt": 1728655861652,
+          "updateAt": 1728992916720,
           "createAt": 1727256406274
         }
       },
@@ -2162,19 +2162,19 @@
         "id": "oA5kwwS3fgSt3PSANRj4G",
         "tableId": "VpnH6CnZaA_x5p-ViAbNP",
         "name": "project_id",
-        "comment": "UNIQUE (project_id, assay_id, sample_type_id)",
+        "comment": "UNIQUE (project_id, assay_id, sample_type_id, sample_type_id)",
         "dataType": "INTEGER",
         "default": "",
         "options": 8,
         "ui": {
           "keys": 2,
           "widthName": 60,
-          "widthComment": 270,
+          "widthComment": 366,
           "widthDataType": 60,
           "widthDefault": 60
         },
         "meta": {
-          "updateAt": 1728655826145,
+          "updateAt": 1728995241321,
           "createAt": 1727995802168
         }
       },
@@ -2182,19 +2182,19 @@
         "id": "pAEoVxD8Yu-gEz5natX3k",
         "tableId": "VpnH6CnZaA_x5p-ViAbNP",
         "name": "assay_id",
-        "comment": "UNIQUE (project_id, assay_id, sample_type_id)",
+        "comment": "UNIQUE (project_id, assay_id, sample_type_id, sample_type_id)",
         "dataType": "INTEGER",
         "default": "",
         "options": 8,
         "ui": {
           "keys": 2,
           "widthName": 60,
-          "widthComment": 270,
+          "widthComment": 366,
           "widthDataType": 60,
           "widthDefault": 60
         },
         "meta": {
-          "updateAt": 1728655829990,
+          "updateAt": 1728995236672,
           "createAt": 1727995816649
         }
       },
@@ -2222,19 +2222,19 @@
         "id": "r3f7iVT2OelT9RkYO54QD",
         "tableId": "VpnH6CnZaA_x5p-ViAbNP",
         "name": "sample_type_id",
-        "comment": "",
+        "comment": "UNIQUE (project_id, assay_id, sample_type_id, sample_type_id)",
         "dataType": "INTEGER",
         "default": "",
         "options": 8,
         "ui": {
           "keys": 2,
           "widthName": 91,
-          "widthComment": 60,
+          "widthComment": 366,
           "widthDataType": 60,
           "widthDefault": 60
         },
         "meta": {
-          "updateAt": 1728655770623,
+          "updateAt": 1728995243031,
           "createAt": 1728655758722
         }
       }
@@ -2810,7 +2810,8 @@
       1727256406272,
       -1,
       {
-        "name": 1727256413820
+        "name": 1727256413820,
+        "ui.color": 1728992916718
       }
     ],
     "bo0Mn5qWaAlaGwXsb4DSv": [
@@ -3922,7 +3923,7 @@
         "name": 1727995808197,
         "dataType": 1727995802166,
         "default": 1727995802166,
-        "comment": 1728655826144
+        "comment": 1728995241319
       }
     ],
     "Xjgg95WJqlT80JGF_d-Nz": [
@@ -3940,7 +3941,7 @@
         "name": 1727995822770,
         "dataType": 1727995816646,
         "default": 1727995816646,
-        "comment": 1728655829990
+        "comment": 1728995236672
       }
     ],
     "jAFmUzZJ6bCA7BJ0Qcyuq": [
@@ -3967,7 +3968,7 @@
         "name": 1728655770622,
         "dataType": 1728655758719,
         "default": 1728655758719,
-        "comment": 1728655758719
+        "comment": 1728995243030
       }
     ],
     "eqyaav49GmKGBg34Vfhuo": [
