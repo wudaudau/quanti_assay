@@ -50,7 +50,7 @@ class TestDBUtils(unittest.TestCase):
         self.assertListEqual(table_names, ["species",
                                            "manufacture", "storage", "kit_item", "kits_kit_items",
                                            "item_lot", "sd_initial_conc",
-                                           "project", "assay_type", "assay", "sample_type", "project_assay",
+                                           "project", "assay_type", "assay", "sample_type", "projects_assays",
                                            "analyte", "analyte_mapping",
                                            "assays_analytes",
                                            ])
