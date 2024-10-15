@@ -40,7 +40,7 @@ CREATE TABLE sample_type
 
 
 -- Junction table to assign assays to projects
-CREATE TABLE project_assay
+CREATE TABLE projects_assays
 (
   id         INTEGER NOT NULL,
   project_id INTEGER NOT NULL,  -- UNIQUE (project_id, assay_id, sample_type_id)

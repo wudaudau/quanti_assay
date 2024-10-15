@@ -4,8 +4,8 @@
   "settings": {
     "width": 3000,
     "height": 3000,
-    "scrollTop": -405,
-    "scrollLeft": -560,
+    "scrollTop": -287,
+    "scrollLeft": -1014,
     "zoomLevel": 1,
     "show": 495,
     "database": 32,
@@ -334,7 +334,7 @@
       },
       "VpnH6CnZaA_x5p-ViAbNP": {
         "id": "VpnH6CnZaA_x5p-ViAbNP",
-        "name": "project_assay",
+        "name": "projects_assays",
         "comment": "Junction table to assign assays to projects",
         "columnIds": [
           "21RkJ0cWDDJ-RXa3-0Q4M",
@@ -352,12 +352,12 @@
           "x": 1169,
           "y": 507,
           "zIndex": 72,
-          "widthName": 81,
+          "widthName": 93,
           "widthComment": 242,
           "color": "#FF5722"
         },
         "meta": {
-          "updateAt": 1728655758723,
+          "updateAt": 1728997365610,
           "createAt": 1727256654528
         }
       },
@@ -2893,7 +2893,7 @@
       1727256654527,
       -1,
       {
-        "name": 1727256659978,
+        "name": 1728997365608,
         "comment": 1727995856143,
         "ui.color": 1727995900185
       }
