@@ -172,9 +172,10 @@ def get_or_insert_projects_assays(db_path, project_name:str, assay_name:str, sam
 # TODO: add_projects_assays_from_file()
 def add_projects_assays_from_file(db_path):
     """
-    The file contains 4 columns: project, species, assay_name, assay_type
-    Therefore, if no existing species or assay_type data is available, the function will insert them into the database.
-    TODO: If there is existing data, what to do if the species or assay_type is different?
+    The file contains 5 columns: project, species, assay_name, assay_type, and sample_type.
+    To insert into the projects_assays table, we only need the project_name, assay_name, and sample_type_name to obtain their ids.
+    There should be already existing data in the species, project, sample_type, assay, and assay_type tables.
+    If not, TODO: Can we raise an error to insert the missing data in the related files.
     """
         
     conn = sqlite3.connect(db_path)
@@ -186,13 +187,12 @@ def add_projects_assays_from_file(db_path):
         reader = csv.DictReader(f, delimiter=";")
         for row in reader:
             project_name = row["project_name"]
-            species = row["species"]
             assay_name = row["assay_name"]
-            assay_type = row["assay_type"]
+            sample_type = row["sample_type"]
 
             # project_id = get_or_insert_project(db_path, project_name, species, None) # TODO: Do we need it?
             # assay_id = get_or_insert_assay(db_path, assay_name, species, assay_type) # TODO: Do we need it?
-            projects_assays_id = get_or_insert_projects_assays(db_path, project_name, assay_name)
+            projects_assays_id = get_or_insert_projects_assays(db_path, project_name, assay_name, sample_type)
 
     conn.commit()
     conn.close()
