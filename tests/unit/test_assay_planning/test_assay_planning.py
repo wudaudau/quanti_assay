@@ -131,24 +131,24 @@ class TestAssayPlanning(unittest.TestCase):
         self.assertTupleEqual(res[1], (2, 'Plasma (EDTA)', '')) #TODO: the description should be None or ''?
         self.assertTupleEqual(res[4], (5, 'EVs from serum', 'Evs extracted using…'))
 
-    def test_get_or_insert_project_assay(self):
+    def test_get_or_insert_projects_assays(self):
         create_db(self.db_path)
 
         project_name, assay_name, sample_type = ["CE-PSY (IF)", "Dupli-R-PLEX TNF-Rs (TNF-RI and TNF-RII)", "Serum"]
-        project_assay_id = get_or_insert_project_assay(self.db_path, project_name, assay_name, sample_type) 
-        self.assertEqual(project_assay_id, 1)
+        projects_assays_id = get_or_insert_projects_assays(self.db_path, project_name, assay_name, sample_type) 
+        self.assertEqual(projects_assays_id, 1)
 
-        project_assay_id = get_or_insert_project_assay(self.db_path, project_name, assay_name, sample_type) 
-        self.assertEqual(project_assay_id, 1)
+        projects_assays_id = get_or_insert_projects_assays(self.db_path, project_name, assay_name, sample_type) 
+        self.assertEqual(projects_assays_id, 1)
 
-    # def test_add_project_assay_from_file(self):
+    # def test_add_projects_assays_from_file(self):
     #     create_db(self.db_path)
 
-    #     add_project_assay_from_file(self.db_path)
+    #     add_projects_assays_from_file(self.db_path)
 
     #     conn = sqlite3.connect(self.db_path)
     #     cursor = conn.cursor()
-    #     cursor.execute("SELECT * FROM project_assay;")
+    #     cursor.execute("SELECT * FROM projects_assays;")
     #     res = cursor.fetchall()
     #     conn.close()
 

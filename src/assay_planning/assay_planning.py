@@ -143,8 +143,8 @@ def add_sample_type_from_file(db_path):
     conn.close()
 
 
-# TODO: get_or_insert_project_assay()
-def get_or_insert_project_assay(db_path, project_name:str, assay_name:str, sample_type:str):
+# TODO: get_or_insert_projects_assays()
+def get_or_insert_projects_assays(db_path, project_name:str, assay_name:str, sample_type:str):
     # TODO: I don't know if it is better to use the project_id and assay_id or the project_name and assay_name
         # The idea to insert into a table is basically to use HUMAN READABLE NAMES, therefore use the names
     project_id = get_or_insert_project(db_path, project_name, None, None) # TODO: Optimise this with a wrapper function or something better
@@ -154,23 +154,23 @@ def get_or_insert_project_assay(db_path, project_name:str, assay_name:str, sampl
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
 
-    row = check_exists(db_path, "project_assay", {"project_id": project_id, "assay_id": assay_id})
+    row = check_exists(db_path, "projects_assays", {"project_id": project_id, "assay_id": assay_id})
 
     if row:
-        project_assay_id = row[0]
+        projects_assays_id = row[0]
     else:
-        cursor.execute("INSERT INTO project_assay (project_id, assay_id, sample_type_id) VALUES (?,?,?);", 
+        cursor.execute("INSERT INTO projects_assays (project_id, assay_id, sample_type_id) VALUES (?,?,?);", 
                        (project_id, assay_id, sample_type_id))
-        project_assay_id = cursor.lastrowid
+        projects_assays_id = cursor.lastrowid
 
     conn.commit()
     conn.close()
 
-    return project_assay_id
+    return projects_assays_id
 
 
-# TODO: add_project_assay_from_file()
-def add_project_assay_from_file(db_path):
+# TODO: add_projects_assays_from_file()
+def add_projects_assays_from_file(db_path):
     """
     The file contains 4 columns: project, species, assay_name, assay_type
     Therefore, if no existing species or assay_type data is available, the function will insert them into the database.
@@ -180,7 +180,7 @@ def add_project_assay_from_file(db_path):
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
 
-    file_path = "data/initial_data_for_the_database/project_assay.csv"
+    file_path = "data/initial_data_for_the_database/projects_assays.csv"
 
     with open(file_path, "r") as f:
         reader = csv.DictReader(f, delimiter=";")
@@ -192,7 +192,7 @@ def add_project_assay_from_file(db_path):
 
             # project_id = get_or_insert_project(db_path, project_name, species, None) # TODO: Do we need it?
             # assay_id = get_or_insert_assay(db_path, assay_name, species, assay_type) # TODO: Do we need it?
-            project_assay_id = get_or_insert_project_assay(db_path, project_name, assay_name)
+            projects_assays_id = get_or_insert_projects_assays(db_path, project_name, assay_name)
 
     conn.commit()
     conn.close()
