@@ -151,10 +151,12 @@ def get_or_insert_projects_assays(db_path, project_name:str, assay_name:str, sam
     assay_id = get_or_insert_assay(db_path, assay_name, None, None) # TODO: Optimise this with a wrapper function or something better
     sample_type_id = get_or_insert_sample_type(db_path, sample_type, None) # TODO: Optimise this with a wrapper function or something better
 
+    # TODO: we should check if the species in the project and assay tables are the same
+
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
 
-    row = check_exists(db_path, "projects_assays", {"project_id": project_id, "assay_id": assay_id})
+    row = check_exists(db_path, "projects_assays", {"project_id": project_id, "assay_id": assay_id, "sample_type_id": sample_type_id})
 
     if row:
         projects_assays_id = row[0]
