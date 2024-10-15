@@ -43,12 +43,14 @@ CREATE TABLE sample_type
 CREATE TABLE project_assay
 (
   id         INTEGER NOT NULL,
-  project_id INTEGER NOT NULL,  -- UNIQUE (project_id, assay_id)
-  assay_id   INTEGER NOT NULL,  -- UNIQUE (project_id, assay_id)
+  project_id INTEGER NOT NULL,  -- UNIQUE (project_id, assay_id, sample_type_id)
+  assay_id   INTEGER NOT NULL,  -- UNIQUE (project_id, assay_id, sample_type_id)
+  sample_type_id INTEGER NOT NULL,  -- UNIQUE (project_id, assay_id, sample_type_id)
   PRIMARY KEY (id),
   FOREIGN KEY (project_id) REFERENCES project (id),
   FOREIGN KEY (assay_id) REFERENCES assay (id),
-  UNIQUE (project_id, assay_id)
+  FOREIGN KEY (sample_type_id) REFERENCES sample_type (id),
+  UNIQUE (project_id, assay_id, sample_type_id)
 );
 
 
