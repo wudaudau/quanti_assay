@@ -4,8 +4,8 @@
   "settings": {
     "width": 3000,
     "height": 3000,
-    "scrollTop": -1461,
-    "scrollLeft": -933,
+    "scrollTop": -1593,
+    "scrollLeft": -170,
     "zoomLevel": 1,
     "show": 495,
     "database": 32,
@@ -2390,7 +2390,7 @@
         "comment": "",
         "dataType": "INTEGER",
         "default": "",
-        "options": 8,
+        "options": 0,
         "ui": {
           "keys": 2,
           "widthName": 118,
@@ -2399,7 +2399,7 @@
           "widthDefault": 60
         },
         "meta": {
-          "updateAt": 1729073809675,
+          "updateAt": 1729090135295,
           "createAt": 1729073798802
         }
       },
@@ -3061,7 +3061,7 @@
         "id": "d77vXlWrzdwZfAgt6am35",
         "identification": false,
         "relationshipType": 16,
-        "startRelationshipType": 2,
+        "startRelationshipType": 1,
         "start": {
           "tableId": "TfEaH2fBOCzhnL94o_r6p",
           "columnIds": [
@@ -4407,7 +4407,7 @@
       1729073798801,
       -1,
       {
-        "options(notNull)": 1729073798801,
+        "options(notNull)": 1729090135295,
         "name": 1729073809674,
         "dataType": 1729073798801,
         "default": 1729073798801,
