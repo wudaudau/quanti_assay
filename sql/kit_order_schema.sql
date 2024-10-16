@@ -1,7 +1,7 @@
 CREATE TABLE manufacture
 (
   id   INTEGER NOT NULL,
-  name TEXT    NULL    ,
+  name TEXT    NOT NULL UNIQUE,
   PRIMARY KEY (id)
 );
 
