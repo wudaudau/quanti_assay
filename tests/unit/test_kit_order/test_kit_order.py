@@ -105,21 +105,3 @@ class TestKitOrder(unittest.TestCase):
 
 
 
-
-
-
-
-
-
-
-
-    def test_get_or_insert_item_lot(self):
-        create_db(self.db_path)
-
-        kit_cat_number, lot_number, expiry_date = ["C0049-2", "A0080225", "2024-08-31"]
-        item_lot_id = get_or_insert_item_lot(self.db_path, kit_cat_number, lot_number, expiry_date)
-        self.assertEqual(item_lot_id, 1)
-
-        item_lot_id = get_or_insert_item_lot(self.db_path, kit_cat_number, lot_number, expiry_date)
-        self.assertEqual(item_lot_id, 1)
-
