@@ -14,7 +14,17 @@ CREATE TABLE storage
 );
 
 -- TODO: Add a kit table
-
+CREATE TABLE kit
+(
+  id             INTEGER NOT NULL,
+  manufacture_id INTEGER NOT NULL,  -- UNIQUE(manufacture_id, kit_cat_number)
+  kit_cat_number TEXT    NOT NULL,  -- UNIQUE(manufacture_id, kit_cat_number)
+  name           TEXT    NULL    ,
+  description            NULL    ,
+  PRIMARY KEY (id),
+  FOREIGN KEY (manufacture_id) REFERENCES manufacture (id),
+  UNIQUE(manufacture_id, kit_cat_number)
+);
 
 
 -- TODO: Reforactor kit_item table to link to kit table
