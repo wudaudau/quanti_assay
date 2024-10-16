@@ -26,33 +26,35 @@ CREATE TABLE quanti_item_type
 CREATE TABLE product
 (
   id             INTEGER NOT NULL,
-  manufacture_id INTEGER NOT NULL,  -- UNIQUE(manufacture_id, kit_cat_number)
-  kit_cat_number TEXT    NOT NULL,  -- UNIQUE(manufacture_id, kit_cat_number)
+  manufacture_id INTEGER NOT NULL,  -- UNIQUE(manufacture_id, cat_number)
+  cat_number TEXT    NOT NULL,  -- UNIQUE(manufacture_id, cat_number)
   name           TEXT    NULL    ,
   description            NULL    ,
-  storage_id     INTEGER NOT NULL,
+  size                        NULL    ,
+  storage_id          INTEGER NULL    ,
   quanti_item_type_id INTEGER NOT NULL,
   PRIMARY KEY (id),
   FOREIGN KEY (manufacture_id) REFERENCES manufacture (id),
   FOREIGN KEY (storage_id) REFERENCES storage (id),
   FOREIGN KEY (quanti_item_type_id) REFERENCES quanti_item_type (id),
-  UNIQUE(manufacture_id, kit_cat_number)
+  UNIQUE(manufacture_id, cat_number)
 );
+
+
 
 
 -- TODO: Reforactor kit_item table to become kits_items to associate kit items with kits
 CREATE TABLE kits_items
 (
-  id             INTEGER NOT NULL,
-  kit_cat_number TEXT    NOT NULL UNIQUE,
-  name           TEXT    NULL    ,
-  manufacture_id INTEGER NOT NULL,
-  description    TEXT    NULL    ,
-  PRIMARY KEY (id),
-  FOREIGN KEY (manufacture_id) REFERENCES manufacture (id),
+  id                      NOT NULL    ,
+  product_id_kit  INTEGER NOT NULL,  -- UNIQUE(product_id_kit, product_id_item)
+  product_id_item INTEGER NOT NULL,  -- UNIQUE(product_id_kit, product_id_item)
+  quantity        TEXT    NULL,
+  PRIMARY KEY (id),    
+  FOREIGN KEY (product_id_kit) REFERENCES product (id),
+  FOREIGN KEY (product_id_item) REFERENCES product (id),
+  UNIQUE(product_id_kit, product_id_item)
 );
-
-
 
 
 
