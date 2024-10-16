@@ -22,14 +22,20 @@ CREATE TABLE quanti_item_type
   PRIMARY KEY (id)
 );
 
+-- TODO: Merge kit and kit_item tables into one product table
+CREATE TABLE product
 (
   id             INTEGER NOT NULL,
   manufacture_id INTEGER NOT NULL,  -- UNIQUE(manufacture_id, kit_cat_number)
   kit_cat_number TEXT    NOT NULL,  -- UNIQUE(manufacture_id, kit_cat_number)
   name           TEXT    NULL    ,
   description            NULL    ,
+  storage_id     INTEGER NOT NULL,
+  quanti_item_type_id INTEGER NOT NULL,
   PRIMARY KEY (id),
   FOREIGN KEY (manufacture_id) REFERENCES manufacture (id),
+  FOREIGN KEY (storage_id) REFERENCES storage (id),
+  FOREIGN KEY (quanti_item_type_id) REFERENCES quanti_item_type (id),
   UNIQUE(manufacture_id, kit_cat_number)
 );
 
