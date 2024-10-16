@@ -7,6 +7,7 @@ import sqlite3
 # Path to the schema files
 SCHEMA_PATHS = ["sql/core_schema.sql",
                 "sql/assay_planning_schema.sql",
+                "sql/kit_order_schema.sql",
                 "sql/schema.sql"]
 
 def create_db(db_path):
