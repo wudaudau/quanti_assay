@@ -16,6 +16,7 @@
     - `core_tables.py`
       - [ ] add the sample_type table in core
       - [ ] add manufacture and kit tables
+  - `kit_order`
   - `assay_planning`
     - [ ] refactor the project_assay table to add sample_type
     - [ ] add llod and ulod to the assay table?
@@ -23,7 +24,6 @@
       - [ ] by project
       - [ ] by assay_type
     - [ ] 
-  - `kit_order`
   - `assay_log`
 - 
 
