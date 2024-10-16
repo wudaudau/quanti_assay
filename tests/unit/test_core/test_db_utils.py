@@ -95,21 +95,23 @@ class TestDBUtils(unittest.TestCase):
         self.assertTupleEqual(res, (1,))
 
         ######
-        # A table with a foreign key: kit_item
+        # A table with foreign keys: product
         ######
-        kit_cat_number = "R50AA-4" # "Diluent 100"
+        manufacture_id, cat_number = [1, "R50AA-4"] # "Diluent 100"
 
-        # check if the kit_item exists
-        res = check_exists(self.db_path, "kit_item", {"kit_cat_number": kit_cat_number})
+        # check if the product exists
+        res = check_exists(self.db_path, "product", {"manufacture_id": manufacture_id,
+                                                     "cat_number": cat_number})
         self.assertIsNone(res)
 
-        # add a kit_item
-        cursor.execute("INSERT INTO kit_item (kit_cat_number, name, manufacture_id, storage_id) VALUES (?,?,?,?);", 
-                       (kit_cat_number, "Diluent 100", 1, 1))
+        # add a product
+        cursor.execute("INSERT INTO product (manufacture_id, cat_number, name) VALUES (?,?,?);", 
+                       (manufacture_id, cat_number, "Diluent 100"))
         conn.commit()
 
-        # check if the kit_item exists
-        res = check_exists(self.db_path, "kit_item", {"kit_cat_number": kit_cat_number})
+        # check if the product exists
+        res = check_exists(self.db_path, "product", {"manufacture_id": manufacture_id,
+                                                     "cat_number": cat_number})
         self.assertTupleEqual(res, (1,))
 
         ######
