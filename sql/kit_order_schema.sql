@@ -13,6 +13,11 @@ CREATE TABLE storage
   PRIMARY KEY (id)
 );
 
+-- TODO: Add a kit table
+
+
+
+-- TODO: Reforactor kit_item table to link to kit table
 CREATE TABLE kit_item
 (
   id             INTEGER NOT NULL,
@@ -26,7 +31,7 @@ CREATE TABLE kit_item
   FOREIGN KEY (storage_id) REFERENCES storage (id)
 );
 
-
+-- TODO: Refacotr kits_kits_items after the kit table is added
 CREATE TABLE kits_kit_items
 (
   id          INTEGER NOT NULL,
