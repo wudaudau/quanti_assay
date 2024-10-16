@@ -13,8 +13,15 @@ CREATE TABLE storage
   PRIMARY KEY (id)
 );
 
--- TODO: Add a kit table
-CREATE TABLE kit
+-- e.g. kit, item-SD, item-QC, item-plate, item-Ab, item-buffer
+CREATE TABLE quanti_item_type
+(
+  id          INTEGER NOT NULL,
+  name        TEXT    NOT NULL UNIQUE,
+  description TEXT    NULL    ,
+  PRIMARY KEY (id)
+);
+
 (
   id             INTEGER NOT NULL,
   manufacture_id INTEGER NOT NULL,  -- UNIQUE(manufacture_id, kit_cat_number)
