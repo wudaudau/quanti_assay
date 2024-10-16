@@ -31,11 +31,11 @@ class TestDBUtils(unittest.TestCase):
 
         self.assertEqual(len(table_names), 16)
         self.assertEqual(table_names[0][0], "species")
-        self.assertEqual(table_names[1][0], "project")
-        self.assertEqual(table_names[6][0], "analyte")
-        self.assertEqual(table_names[8][0], "assays_analytes")
-        self.assertEqual(table_names[9][0], "manufacture")
-        self.assertEqual(table_names[14][0], "item_lot")
+        self.assertEqual(table_names[1][0], "manufacture")
+        self.assertEqual(table_names[8][0], "project")
+        self.assertEqual(table_names[13][0], "analyte")
+        self.assertEqual(table_names[15][0], "assays_analytes")
+        self.assertEqual(table_names[6][0], "item_lot")
 
         conn.close()
         
@@ -47,11 +47,11 @@ class TestDBUtils(unittest.TestCase):
         self.assertEqual(len(table_names), 16)
         self.assertEqual(table_names[0], "species")
         self.assertListEqual(table_names, ["species",
+                                           "manufacture", "storage", "quanti_item_type", "product", "kits_items",
+                                           "item_lot", "sd_initial_conc",
                                            "project", "assay_type", "assay", "sample_type", "projects_assays",
                                            "analyte", "analyte_mapping",
                                            "assays_analytes",
-                                           "manufacture", "storage", "quanti_item_type", "product", "kits_items",
-                                           "item_lot", "sd_initial_conc",
                                            ])
 
     def test_check_exists(self):
