@@ -40,30 +40,18 @@ CREATE TABLE product
 );
 
 
--- TODO: Reforactor kit_item table to link to kit table
-CREATE TABLE kit_item
+-- TODO: Reforactor kit_item table to become kits_items to associate kit items with kits
+CREATE TABLE kits_items
 (
   id             INTEGER NOT NULL,
   kit_cat_number TEXT    NOT NULL UNIQUE,
   name           TEXT    NULL    ,
   manufacture_id INTEGER NOT NULL,
-  storage_id     INTEGER NOT NULL,
   description    TEXT    NULL    ,
   PRIMARY KEY (id),
   FOREIGN KEY (manufacture_id) REFERENCES manufacture (id),
-  FOREIGN KEY (storage_id) REFERENCES storage (id)
 );
 
--- TODO: Refacotr kits_kits_items after the kit table is added
-CREATE TABLE kits_kit_items
-(
-  id          INTEGER NOT NULL,
-  kit_id      INTEGER NOT NULL,
-  kit_item_id INTEGER NOT NULL,
-  PRIMARY KEY (id),
-  FOREIGN KEY (kit_id) REFERENCES kit (id),
-  FOREIGN KEY (kit_item_id) REFERENCES kit_item (id)
-);
 
 
 
