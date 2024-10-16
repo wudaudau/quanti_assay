@@ -32,7 +32,7 @@ CREATE TABLE product
   description            NULL    ,
   size                        NULL    ,
   storage_id          INTEGER NULL    ,
-  quanti_item_type_id INTEGER NOT NULL,
+  quanti_item_type_id INTEGER NULL,
   PRIMARY KEY (id),
   FOREIGN KEY (manufacture_id) REFERENCES manufacture (id),
   FOREIGN KEY (storage_id) REFERENCES storage (id),
