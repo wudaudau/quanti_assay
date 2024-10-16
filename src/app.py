@@ -8,9 +8,9 @@ This work will be done in the db_utils.py file.
 
 
 from src.core.db_utils import create_db
-from src.core.core_tables import add_kit_item_from_file
 from src.assay_planning.assay_planning import add_analyte_mapping_from_file, add_assays_analytes_from_file
 from src.assay_planning.assay_planning import add_assay_from_file, add_projects_assays_from_file
+from src.kit_order.kit_order import add_kit_item_from_file
 
 # main function to run the app
 def run_app(db_path:str='data/database/quanti.sqlite'):
@@ -35,8 +35,8 @@ def run_app(db_path:str='data/database/quanti.sqlite'):
     add_assays_analytes_from_file(db_path)
     print("assays_analytes.csv have been added to the database.")
 
-    add_project_assay_from_file(db_path)
-    print("project_assay.csv have been added to the database.")
+    add_projects_assays_from_file(db_path)
+    print("projects_assays.csv have been added to the database.")
 
 
     assay_id = ask_assay_name()
