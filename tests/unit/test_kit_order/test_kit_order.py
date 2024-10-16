@@ -58,6 +58,24 @@ class TestKitOrder(unittest.TestCase):
         storage_id = get_or_insert_storage(self.db_path, storage_name)
         self.assertEqual(storage_id, 2)
 
+    def test_get_or_insert_quanti_item_type(self):
+
+        create_db(self.db_path)
+
+        quanti_item_type_name, description = ["Kit", "Assay kit"]
+        quanti_item_type_id = get_or_insert_quanti_item_type(self.db_path, quanti_item_type_name, description)
+        self.assertEqual(quanti_item_type_id, 1)
+
+        quanti_item_type_id = get_or_insert_quanti_item_type(self.db_path, quanti_item_type_name, description)
+        self.assertEqual(quanti_item_type_id, 1)
+
+        quanti_item_type_name, description = ["Item-SD", "Calibrator for the assay kit"]
+        quanti_item_type_id = get_or_insert_quanti_item_type(self.db_path, quanti_item_type_name, description)
+        self.assertEqual(quanti_item_type_id, 2)
+
+        quanti_item_type_id = get_or_insert_quanti_item_type(self.db_path, quanti_item_type_name, description)
+        self.assertEqual(quanti_item_type_id, 2)
+
     def test_get_or_insert_kit_item(self):
 
         create_db(self.db_path)

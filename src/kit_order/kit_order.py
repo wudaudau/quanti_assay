@@ -47,6 +47,23 @@ def get_or_insert_storage(db_path, storage_name):
 
     return storage_id
 
+def get_or_insert_quanti_item_type(db_path, quanti_item_type_name:str, description:str):
+    conn = sqlite3.connect(db_path)
+    cursor = conn.cursor()
+
+    row = check_exists(db_path, "quanti_item_type", {"name": quanti_item_type_name})
+
+    if row:
+        quanti_item_type_id = row[0]
+    else:
+        cursor.execute("INSERT INTO quanti_item_type (name, description) VALUES (?,?);", (quanti_item_type_name, description))
+        quanti_item_type_id = cursor.lastrowid
+
+    conn.commit()
+    conn.close()
+
+    return quanti_item_type_id
+
 def get_or_insert_kit_item(db_path, kit_cat_number:str, name:str, manufacture:str, storage:str, description:str):
     manufacture_id = get_or_insert_manufacture(db_path, manufacture)
     storage_id = get_or_insert_storage(db_path, storage)
